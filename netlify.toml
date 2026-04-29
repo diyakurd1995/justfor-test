@@ -1,0 +1,7 @@
+[build]
+  publish = "public"
+  command = "npm run build"
+
+[[edge_functions]]
+  path = "/*"
+  function = "relay"

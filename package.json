@@ -1,0 +1,14 @@
+{
+  "name": "edge-proxy-relay",
+  "version": "1.0.1",
+  "description": "Custom HTTP relay worker for Netlify Edge",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "echo 'Build process skipped'",
+    "dev": "netlify dev"
+  },
+  "devDependencies": {
+    "netlify-cli": "latest"
+  }
+}
