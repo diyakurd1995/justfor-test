@@ -1,0 +1,6 @@
+# B Titr font is fetched by src/fetch-font.sh (not redistributed here)
+src/fonts/
+# intermediate files written during a build
+output/_full-raw.png
+output/.poster-text.txt
+output/.guide.html

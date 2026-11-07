@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<title>پوستر آموزشی مراقبت‌های آنفولانزا</title>
+<!--
+  Poster size: 420mm × 594mm = four A4 portrait sheets in a 2×2 grid.
+  Sheet seams: x = 210mm (vertical) and y = 297mm (horizontal).
+  Safe zone: no text, card or face closer than 12mm to any sheet edge,
+  so the 24mm gutters around the seams contain background only.
+-->
+<style>
+  @font-face { font-family: 'Titr'; src: url('fonts/Titr.ttf') format('truetype'); font-weight: normal; }
+  @font-face { font-family: 'Titr'; src: url('fonts/Titr.ttf') format('truetype'); font-weight: bold; }
+  @page { size: 420mm 594mm; margin: 0; }
+  :root {
+    --navy: #12355B; --blue: #1F6FD1; --blueL: #DCEBFF; --teal: #0E9F9A; --tealL: #D5F3F0;
+    --green: #2E9E5B; --greenL: #DDF4E6; --orange: #E8690F; --orangeL: #FFE8D3;
+    --yellow: #FFC531; --yellowL: #FFF4CC; --red: #D93B28; --redL: #FFEDE7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 420mm; height: 594mm; }
+  body { font-family: 'Titr'; color: var(--navy); direction: ltr; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  #poster { position: absolute; left: 0; top: 0; direction: rtl; width: 420mm; height: 594mm; overflow: hidden;
+    background: linear-gradient(180deg, #EAF5FF 0%, #F4FBFF 40%, #F3FBF6 75%, #EAF7F1 100%); }
+  .abs { position: absolute; }
+  svg { display: block; width: 100%; height: 100%; }
+
+  /* ---------- background decoration (continuous across seams) ---------- */
+  .dots { position: absolute; inset: 0; opacity: .5;
+    background-image: radial-gradient(circle, #CFE3F5 0.55mm, transparent 0.6mm); background-size: 9mm 9mm; }
+  .band-top { left: 0; top: 0; width: 420mm; height: 64mm;
+    background: linear-gradient(90deg, #0E9F9A 0%, #1689C4 45%, #1F6FD1 100%); }
+  .band-top .wave { position: absolute; left: 0; bottom: -6mm; width: 420mm; height: 7mm; }
+  .band-bottom { left: 0; top: 522mm; width: 420mm; height: 72mm;
+    background: linear-gradient(90deg, #1F6FD1 0%, #1689C4 55%, #0E9F9A 100%); }
+  .band-bottom .wave { position: absolute; left: 0; top: -6mm; width: 420mm; height: 7mm; }
+  .bubble { position: absolute; border-radius: 50%; background: rgba(255,255,255,.12); }
+
+  /* ---------- title ---------- */
+  .title { top: 17mm; height: 30mm; font-size: 21mm; line-height: 30mm; color: #fff; white-space: nowrap;
+    text-shadow: 0 0.8mm 0 rgba(10,40,80,.25); }
+  .title .hl { color: var(--yellow); }
+  .title.t1 { left: 222mm; text-align: left; }
+  .title.t2 { right: 222mm; text-align: right; }
+  .emblem { left: 376mm; top: 15mm; width: 31mm; height: 31mm; border-radius: 50%; background: #fff;
+    box-shadow: 0 1mm 0 rgba(10,40,80,.2); padding: 2.4mm; }
+
+  /* ---------- cards ---------- */
+  .card { position: absolute; background: #fff; border-radius: 7mm; overflow: hidden;
+    box-shadow: 0 1.2mm 3.5mm rgba(18,53,91,.13), 0 0 0 0.5mm rgba(18,53,91,.05); }
+  .card-head { height: 17mm; display: flex; align-items: center; gap: 3.5mm; padding: 0 5mm; color: #fff; }
+  .card-head h2 { font-size: 9mm; line-height: 17mm; font-weight: normal; white-space: nowrap; }
+  .num { flex: none; width: 11mm; height: 11mm; border-radius: 50%; background: #fff; display: grid; place-items: center;
+    font-size: 7.4mm; line-height: 1; padding-top: 0.6mm; }
+  .c1 .card-head { background: var(--blue); }   .c1 .num { color: var(--blue); }
+  .c2 .card-head { background: var(--orange); } .c2 .num { color: var(--orange); }
+  .c3 .card-head { background: var(--green); }  .c3 .num { color: var(--green); }
+  .c4 .card-head { background: var(--teal); }   .c4 .num { color: var(--teal); }
+  .c5 { background: var(--redL); box-shadow: 0 1.2mm 3.5mm rgba(217,59,40,.18), 0 0 0 1.2mm var(--red) inset; }
+  .c5 .card-head { background: var(--red); }
+  .c5 .num { background: none; width: 13mm; height: 13mm; padding: 0; }
+
+  .body { position: absolute; left: 0; right: 0; top: 17mm; bottom: 0; padding: 4mm 4.5mm; }
+  .txt { font-size: 6.4mm; line-height: 1.42; text-wrap: balance; }
+  .k-blue { color: var(--blue); } .k-teal { color: var(--teal); } .k-orange { color: var(--orange); }
+
+  /* section 1 */
+  .s1 { display: flex; gap: 4mm; align-items: center; height: 100%; }
+  .s1 .art { flex: none; width: 80mm; height: 57mm; }
+  .s1 .def { flex: 1; }
+  .s1 .def .txt { font-size: 6.5mm; line-height: 1.55; text-wrap: pretty; }
+  .facts { display: flex; gap: 2.5mm; margin-top: 3mm; }
+  .fact { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6mm; background: #F2F7FD; border-radius: 4mm; padding: 1.6mm 1mm 1.2mm; }
+  .fact .ic { flex: none; width: 13mm; height: 13mm; }
+  .fact span { font-size: 5.3mm; line-height: 1.3; white-space: nowrap; }
+
+  /* section 2 */
+  .sym { display: grid; grid-template-columns: repeat(6, 1fr); row-gap: 3mm; column-gap: 2mm; height: 100%; align-content: center; }
+  .sym .it { grid-column: span 2; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .sym .it:nth-child(4) { grid-column: 2 / span 2; }
+  .sym .it:nth-child(5) { grid-column: 4 / span 2; }
+  .sym .ic { width: 35mm; height: 35mm; }
+  .sym .lab { margin-top: 1.5mm; font-size: 6.3mm; line-height: 1.3; white-space: nowrap; }
+
+  /* hero cells (sections 3 & 4) */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; }
+  .hcell { position: relative; border-radius: 5mm; padding: 2.5mm 3mm 3mm; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .c3 .hcell { background: var(--greenL); }
+  .c4 .hcell { background: var(--tealL); }
+  .hcell .art { width: 100%; }
+  .hcell .txt { margin-top: 1.5mm; }
+  .badge20 { margin-top: 1.6mm; display: flex; align-items: center; gap: 1.2mm; background: #fff; border-radius: 6mm;
+    padding: 0.6mm 1.2mm 0.6mm 2.6mm; box-shadow: 0 0.6mm 1.5mm rgba(18,53,91,.18); font-size: 5mm; line-height: 1.2; color: var(--green); }
+  .badge20 .ic { width: 7.5mm; height: 7.5mm; }
+
+  /* list grid cells (icon + text) */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; }
+  .cell { display: flex; align-items: center; gap: 3mm; border-radius: 5mm; padding: 2.5mm 3mm; }
+  .c3 .cell { background: #F0FAF4; }
+  .c4 .cell { background: #EEFAF8; }
+  .c5 .cell { background: #fff; min-height: 44mm; }
+  .c5 .cell .ic { width: 30mm; height: 30mm; }
+  .c5 .cell .txt { font-size: 6.6mm; }
+  .cell .ic { flex: none; width: 28mm; height: 28mm; }
+  .cell .txt { font-size: 6.3mm; line-height: 1.4; }
+  .rows { display: flex; flex-direction: column; gap: 3mm; }
+  .rows .cell .ic { width: 24mm; height: 24mm; }
+  .rows .cell .txt { font-size: 6.6mm; }
+
+  /* warning note */
+  .note { margin-top: 5mm; display: flex; align-items: center; gap: 3mm; background: #FFF6D8; border-radius: 6mm; padding: 2mm 4mm 2mm 3mm;
+    border: 0.8mm dashed #F0A030; }
+  .note .art { flex: none; width: 84mm; height: 68mm; }
+  .note .txt { font-size: 7mm; line-height: 1.55; color: #8A2414; text-wrap: pretty; }
+
+  /* slogan */
+  .slogan1 { left: 222mm; width: 186mm; top: 538mm; height: 40mm; display: flex; align-items: center; justify-content: flex-end;
+    color: #fff; font-size: 11.6mm; line-height: 1.2; white-space: nowrap; text-shadow: 0 0.7mm 0 rgba(10,40,80,.25); }
+  .slogan2 { left: 12mm; width: 186mm; top: 538mm; height: 40mm; display: flex; align-items: center; justify-content: space-between; }
+  .slogan2 .big { color: var(--yellow); font-size: 13.4mm; line-height: 1.2; white-space: nowrap; text-shadow: 0 0.7mm 0 rgba(10,40,80,.3); }
+  .steps { display: flex; gap: 3.5mm; direction: ltr; }
+  .steps .ic { width: 22mm; height: 22mm; border-radius: 50%; box-shadow: 0 0.8mm 0 rgba(10,40,80,.25); }
+</style>
+<script src="illustrations.js"></script>
+</head>
+<body>
+<div id="poster">
+  <!-- ===== background (continuous across all four sheets) ===== -->
+  <div class="dots"></div>
+  <div class="abs band-top">
+    <div class="bubble" style="left:150mm;top:-14mm;width:40mm;height:40mm"></div>
+    <div class="bubble" style="left:300mm;top:40mm;width:22mm;height:22mm"></div>
+    <div class="bubble" style="left:60mm;top:44mm;width:16mm;height:16mm"></div>
+    <svg class="wave" viewBox="0 0 420 7" preserveAspectRatio="none"><path d="M0 0 H420 V1 C385 7 350 7 315 3 C280 -1 245 -1 210 3 C175 7 140 7 105 3 C70 -1 35 -1 0 3 Z" fill="#1A7DCB"/></svg>
+  </div>
+  <div class="abs band-bottom">
+    <div class="bubble" style="left:250mm;top:46mm;width:30mm;height:30mm"></div>
+    <div class="bubble" style="left:100mm;top:-10mm;width:20mm;height:20mm"></div>
+    <svg class="wave" viewBox="0 0 420 7" preserveAspectRatio="none"><path d="M0 7 H420 V6 C385 0 350 0 315 4 C280 8 245 8 210 4 C175 0 140 0 105 4 C70 8 35 8 0 4 Z" fill="#1A7DCB"/></svg>
+  </div>
+
+  <!-- ===== main title (split at the vertical seam, read right → left) ===== -->
+  <div class="abs title t1"><span class="hl">آنفولانزا</span> را بشناسیم،</div>
+  <div class="abs title t2">از خودمان مراقبت کنیم!</div>
+  <div class="abs emblem"><div data-icon="vaccine" data-bg="#DDF4E6" style="width:100%;height:100%"></div></div>
+
+  <!-- ===== SHEET 1 (top-right): sections 1 & 2 ===== -->
+  <section class="card c1" style="left:222mm; top:72mm; width:186mm; height:84mm">
+    <div class="card-head"><span class="num">۱</span><h2>آنفولانزا چیست؟</h2></div>
+    <div class="body">
+      <div class="s1">
+        <div class="art" data-art="sceneMagnifier"></div>
+        <div class="def">
+          <p class="txt">آنفولانزا یک <span class="k-teal">بیماری ویروسی</span> است که <span class="k-blue">دستگاه تنفس</span> را درگیر می‌کند و می‌تواند <span class="k-orange">از فردی به فرد دیگر منتقل شود.</span></p>
+          <div class="facts">
+            <div class="fact"><div class="ic" data-icon="virus"></div><span>ویروسی</span></div>
+            <div class="fact"><div class="ic" data-icon="lungs"></div><span>تنفسی</span></div>
+            <div class="fact"><div class="ic" data-icon="spread"></div><span>واگیردار</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card c2" style="left:222mm; top:163mm; width:186mm; height:122mm">
+    <div class="card-head"><span class="num">۲</span><h2>نشانه‌های آنفولانزا</h2></div>
+    <div class="body">
+      <div class="sym">
+        <div class="it"><div class="ic" data-mini="fever"></div><div class="lab">تب و لرز</div></div>
+        <div class="it"><div class="ic" data-mini="cough"></div><div class="lab">سرفه و گلودرد</div></div>
+        <div class="it"><div class="ic" data-mini="nose"></div><div class="lab">آبریزش یا گرفتگی بینی</div></div>
+        <div class="it"><div class="ic" data-mini="head"></div><div class="lab">سردرد</div></div>
+        <div class="it"><div class="ic" data-mini="tired"></div><div class="lab">بدن‌درد و خستگی</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHEET 2 (top-left): section 3 ===== -->
+  <section class="card c3" style="left:12mm; top:72mm; width:186mm; height:213mm">
+    <div class="card-head"><span class="num">۳</span><h2>چگونه از آنفولانزا پیشگیری کنیم؟</h2></div>
+    <div class="body">
+      <div class="hero">
+        <div class="hcell">
+          <div class="art" data-art="sceneWash" style="height:69mm"></div>
+          <p class="txt">دست‌هایمان را مرتب با آب و صابون بشوییم.</p>
+          <div class="badge20"><div class="ic" data-icon="clock"></div>دست‌کم ۲۰ ثانیه</div>
+        </div>
+        <div class="hcell">
+          <div class="art" data-art="sceneSneeze" style="height:69mm"></div>
+          <p class="txt">هنگام سرفه و عطسه جلوی دهان و بینی خود را با دستمال یا آرنج بگیریم.</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:3.5mm">
+        <div class="cell"><div class="ic" data-icon="noTouch"></div><p class="txt">از دست زدن به چشم، بینی و دهان با دست‌های آلوده خودداری کنیم.</p></div>
+        <div class="cell"><div class="ic" data-icon="window"></div><p class="txt">کلاس و اتاق را مرتب تهویه کنیم.</p></div>
+        <div class="cell"><div class="ic" data-icon="cups"></div><p class="txt">از لیوان و وسایل شخصی دیگران استفاده نکنیم.</p></div>
+        <div class="cell"><div class="ic" data-icon="vaccine"></div><p class="txt">واکسن آنفولانزا را با راهنمایی والدین و پزشک دریافت کنیم.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHEET 3 (bottom-right): section 4 ===== -->
+  <section class="card c4" style="left:222mm; top:309mm; width:186mm; height:203mm">
+    <div class="card-head"><span class="num">۴</span><h2>اگر بیمار شدیم چه کار کنیم؟</h2></div>
+    <div class="body">
+      <div class="hero">
+        <div class="hcell">
+          <div class="art" data-art="sceneRest" style="height:60mm"></div>
+          <p class="txt">به اندازه کافی استراحت کنیم.</p>
+        </div>
+        <div class="hcell">
+          <div class="art" data-art="sceneDrink" style="height:60mm"></div>
+          <p class="txt">آب و مایعات کافی بنوشیم.</p>
+        </div>
+      </div>
+      <div class="rows" style="margin-top:3.5mm">
+        <div class="cell"><div class="ic" data-icon="tellAdult"></div><p class="txt">به والدین و مربی بهداشت مدرسه اطلاع بدهیم.</p></div>
+        <div class="cell"><div class="ic" data-icon="home"></div><p class="txt">در صورت داشتن تب یا علائم بیماری در خانه بمانیم.</p></div>
+        <div class="cell"><div class="ic" data-icon="medicine"></div><p class="txt">دارو را فقط با تجویز پزشک و کمک بزرگ‌ترها مصرف کنیم.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHEET 4 (bottom-left): section 5 (warning box) ===== -->
+  <section class="card c5" style="left:12mm; top:309mm; width:186mm; height:203mm">
+    <div class="card-head"><span class="num" data-icon="warning" data-raw="1"></span><h2>چه زمانی باید به پزشک مراجعه کنیم؟</h2></div>
+    <div class="body" style="padding-top:4.5mm">
+      <div class="grid2">
+        <div class="cell"><div class="ic" data-icon="breath"></div><p class="txt">تنگی نفس یا سختی در نفس کشیدن</p></div>
+        <div class="cell"><div class="ic" data-icon="chest"></div><p class="txt">درد قفسه سینه</p></div>
+        <div class="cell"><div class="ic" data-icon="dizzy"></div><p class="txt">بی‌حالی شدید یا کاهش هوشیاری</p></div>
+        <div class="cell"><div class="ic" data-icon="noDrink"></div><p class="txt">ناتوانی در نوشیدن مایعات یا کم‌آبی شدید</p></div>
+      </div>
+      <div class="note">
+        <div class="art" data-art="sceneTell"></div>
+        <p class="txt">در صورت مشاهده این نشانه‌ها باید سریع به بزرگ‌ترها اطلاع بدهیم و کمک پزشکی دریافت کنیم.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== closing slogan (split at the vertical seam) ===== -->
+  <div class="abs slogan1">دست‌های تمیز، هوای تازه و استراحت کافی؛</div>
+  <div class="abs slogan2">
+    <div class="big">سه قدم برای سلامتی!</div>
+    <div class="steps">
+      <div class="ic" data-icon="bed"></div>
+      <div class="ic" data-icon="freshAir"></div>
+      <div class="ic" data-icon="soapHands"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-art]').forEach((el) => { el.innerHTML = ART[el.dataset.art](); });
+    document.querySelectorAll('[data-mini]').forEach((el) => { el.innerHTML = ART.miniBust(el.dataset.mini); });
+    document.querySelectorAll('[data-icon]').forEach((el) => {
+      const fn = ART.ICONS[el.dataset.icon];
+      el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' + fn(el.dataset.bg) + '</svg>';
+    });
+    document.documentElement.dataset.ready = '1';
+  })();
+</script>
+</body>
+</html>
