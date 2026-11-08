@@ -113,7 +113,6 @@
   .fact .t { display: flex; align-items: center; gap: 2mm; font-size: 5.2mm; color: #2350A8; }
   .fact .t .emo { font-size: 7mm; }
   .fact p { font-size: 4.7mm; line-height: 1.6; margin-top: 1.6mm; text-wrap: pretty; }
-  .fact .src { margin-top: 1.6mm; font-size: 3.7mm; color: #5A73A3; }
 
   .art { display: flex; justify-content: center; }
   .art > div { aspect-ratio: 300 / 240; }
@@ -208,14 +207,9 @@
   .pledge { border-radius: 7mm; padding: 5mm 6mm; background: linear-gradient(135deg, var(--t), #FFF6D6); border: 0.8mm solid var(--t2); text-align: center; }
   .pledge .t { font-size: 6.4mm; color: var(--d); }
   .pledge p { font-size: 4.8mm; line-height: 1.8; margin-top: 2mm; }
-  .pledge .sig { display: flex; justify-content: space-around; margin-top: 4mm; font-size: 4.4mm; color: #4A607A; }
-  .pledge .sig span { border-top: 0.5mm dashed #9DB3CC; padding-top: 1.4mm; min-width: 50mm; }
+  .pledge .sig { display: flex; gap: 6mm; margin-top: 5mm; font-size: 4.4mm; color: #4A607A; }
+  .pledge .sig span { flex: 1; min-width: 0; border-top: 0.5mm dashed #9DB3CC; padding-top: 1.4mm; }
 
-  .srcs { list-style: none; display: flex; flex-direction: column; gap: 2mm; counter-reset: s; }
-  .srcs li { counter-increment: s; display: flex; gap: 2.6mm; align-items: flex-start; background: #F6F9FC; border-radius: 4mm; padding: 2mm 3mm 1.6mm; }
-  .srcs li::before { content: counter(s, persian); flex: none; width: 7mm; height: 7mm; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-size: 4mm; line-height: 1; padding-top: .3mm; }
-  .srcs .o { font-size: 4.4mm; line-height: 1.4; }
-  .srcs .en { display: block; font-size: 3.2mm; line-height: 1.4; color: #4A607A; text-align: left; margin-top: .6mm; }
   .disc { font-size: 4.1mm; line-height: 1.65; color: #4A607A; background: #F6F9FC; border-radius: 4mm; padding: 3mm 4mm; }
 
   /* slogan + footer */
@@ -296,7 +290,7 @@
       chips: (b) => `<div>${H(b.h)}<div class="chips ${b.tone === 'bad' ? 'bad' : ''} ${b.cols ? 'c' + b.cols : ''}">` + b.items.map(([e, t]) => `<div class="cp">${E(e)}<span>${t}</span></div>`).join('') + `</div></div>`,
       big: (b) => `<div>${H(b.h)}<div class="big ${b.items.length > 1 ? 'cols' : ''}" style="--n:${b.items.length}">` + b.items.map(([n, t]) => `<div class="bg"><div class="num">${n}</div><p>${t}</p></div>`).join('') + `</div></div>`,
       tip: (b) => `<div class="tip">${E(b.e || '💡')}<p>${b.text}</p></div>`,
-      fact: (b) => `<div class="fact"><div class="t">${E(b.e || '🔬')}${b.h || 'آیا می‌دانستید؟'}</div><p>${b.text}</p>${b.src ? `<div class="src">منبع: ${b.src}</div>` : ''}</div>`,
+      fact: (b) => `<div class="fact"><div class="t">${E(b.e || '🔬')}${b.h || 'آیا می‌دانستید؟'}</div><p>${b.text}</p></div>`,
       art: (b) => `<div class="art"><div style="height:${b.h}mm">${SCENES[b.s]()}</div></div>`,
       cards: (b) => `<div>${H(b.h)}<div class="cards" style="grid-template-columns:repeat(${b.cols || 2},1fr)">` +
         b.items.map(([e, ti, t]) => `<div class="card">${E(e)}<div><b>${ti}</b>${t ? `<p>${t}</p>` : ''}</div></div>`).join('') + `</div></div>`,
@@ -327,7 +321,6 @@
         b.rows.map((r) => `<tr><td class="hb">${r}</td>${'<td class="bx"><i></i></td>'.repeat(7)}</tr>`).join('') +
         `</tbody></table><div class="ans" style="text-align:right">هر روز که این کار را انجام دادی، خانه آن روز را رنگ کن یا تیک بزن.</div></div>`,
       pledge: (b) => `<div class="pledge"><div class="t">${E('🤝')} پیمان من</div><p>${b.text}</p><div class="sig"><span>نام و نام خانوادگی</span><span>امضای من</span><span>امضای ولی</span></div></div>`,
-      sources: (b) => `<div>${H('منابع علمی')}<ol class="srcs">` + b.items.map(([fa1, en]) => `<li><div class="o">${fa1}${en ? `<span class="en">${en}</span>` : ''}</div></li>`).join('') + `</ol></div>`,
       disc: (b) => `<div class="disc">${b.text}</div>`,
       artlist: (b) => `<div>${H(b.h)}<div class="plate"><div class="ar">${SCENES[b.s]()}</div><ul>` + b.items.map(([c, t]) => `<li><i style="background:${c}"></i>${t}</li>`).join('') + `</ul></div></div>`,
       bins: (b) => `<div>${H(b.h)}<div class="bins" style="grid-template-columns:repeat(${b.items.length},1fr)">` + b.items.map(([c, e, t, its]) =>
@@ -354,7 +347,6 @@
       <div class="kick">${U.kicker}</div><h1>${U.full}</h1>
       <div class="art2"><div>${SCENES[U.cover]()}</div></div>
       <div class="tags">${U.sections.map((s) => `<span>${s.title}</span>`).join('')}</div>
-      <div class="sci">${E('🔬')} تهیه‌شده بر پایه منابع علمی معتبر</div>
       <div class="by2">گردآورنده: <b>${COMPILER}</b></div></section>`;
 
     // contents + objectives
@@ -362,7 +354,7 @@
     const toc = `<div class="toc"><div class="h">در این کتابچه می‌خوانیم</div><div class="rows">` +
       U.sections.map((s, i) => `<div class="r"><span class="n">${fa(i + 1)}</span>${E(s.icon)}<span>${s.title}</span><span class="ld"></span><span class="pg">${fa(secStart[i])}</span></div>`).join('') +
       `<div class="r"><span class="n">${E('✏️')}</span><span>بازی، تمرین و جدول عادت‌ها</span><span class="ld"></span><span class="pg">${fa(actPage)}</span></div>` +
-      `<div class="r"><span class="n">${E('📚')}</span><span>پیمان من و منابع علمی</span><span class="ld"></span><span class="pg">${fa(actPage + 1)}</span></div></div></div>`;
+      `<div class="r"><span class="n">${E('🤝')}</span><span>پیمان من</span><span class="ld"></span><span class="pg">${fa(actPage + 1)}</span></div></div></div>`;
     const obj = `<div class="obj"><div class="h">پس از خواندن این کتابچه می‌توانم:</div><ul>${U.objectives.map((o) => `<li><span class="mk">${OK}</span>${o}</li>`).join('')}</ul></div>`;
     html += `<section class="page p2" style="--c:${U.color}" data-kind="toc"><div class="hdr2"><span class="chip">سرفصل ${fa(U.n)}</span><h1>${U.title}</h1></div>` +
       `<div class="content">${toc}${obj}${B.tip({ e: '👨‍👩‍👦', text: U.parents })}</div>${foot()}</section>`;
@@ -388,10 +380,10 @@
     pageNo++;
     html += `<section class="page p2" style="--c:${U.color}" data-kind="activity"><div class="hdr2"><span class="chip">${E('✏️')} تمرین</span><h1>بازی و تمرین</h1></div>` +
       `<div class="content">${B.quiz({ items: U.quiz })}${B.tracker(Array.isArray(U.tracker) ? { rows: U.tracker } : U.tracker)}</div>${foot()}</section>`;
-    // pledge + sources
+    // closing page: pledge, answers, note
     pageNo++;
-    html += `<section class="page p2 has-slogan" style="--c:${U.color}" data-kind="sources"><div class="hdr2"><span class="chip">${E('📚')} پایان</span><h1>پیمان من و منابع علمی</h1></div>` +
-      `<div class="content">${B.pledge({ text: U.pledge })}${B.sources({ items: U.sources })}${B.answers({ items: U.quiz })}${B.disc({ text: 'این کتابچه بر پایه توصیه‌های منابع بالا و به زبان ساده برای کودکان تهیه شده است و جای مشاوره با پزشک و کارکنان بهداشت را نمی‌گیرد. برای تشخیص و درمان همیشه با کمک پدر و مادر به پزشک یا مرکز بهداشت مراجعه کنید.' })}</div>` +
+    html += `<section class="page p2 has-slogan" style="--c:${U.color}" data-kind="end"><div class="hdr2"><span class="chip">${E('🏁')} پایان</span><h1>پیمان من</h1></div>` +
+      `<div class="content">${B.art({ s: U.cover, h: 74 })}${B.pledge({ text: U.pledge })}${B.answers({ items: U.quiz })}${B.disc({ text: 'این کتابچه به زبان ساده برای کودکان تهیه شده است و جای مشاوره با پزشک و کارکنان بهداشت را نمی‌گیرد. برای تشخیص و درمان همیشه با کمک پدر و مادر به پزشک یا مرکز بهداشت مراجعه کنید.' })}</div>` +
       `<div class="slogan">${E('⭐')}${U.slogan}${E('⭐')}</div>${foot()}</section>`;
 
     document.getElementById('book').innerHTML = html.replace(/هٔ/g, 'ۀ');
