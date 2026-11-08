@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<title>کتابچه آموزشی</title>
+<style>
+  @font-face { font-family: 'Titr'; src: url('fonts/Titr.ttf') format('truetype'); }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #E9EEF3; }
+  body { font-family: 'Titr', 'Noto Color Emoji'; color: #12355B; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .emo { font-family: 'Noto Color Emoji'; line-height: 1; }
+  .en { font-family: 'Inter', 'DejaVu Sans', sans-serif; direction: ltr; unicode-bidi: isolate; }
+  svg { display: block; width: 100%; height: 100%; }
+
+  .page { position: relative; width: 210mm; height: 297mm; overflow: hidden; direction: rtl; page-break-after: always; break-after: page;
+    --t: color-mix(in srgb, var(--c) 11%, white); --t2: color-mix(in srgb, var(--c) 24%, white);
+    --d: color-mix(in srgb, var(--c) 72%, #0B1B33); background: linear-gradient(180deg, #FFFFFF 62%, var(--t) 100%); }
+  @media screen { .page { margin: 6mm auto; box-shadow: 0 1mm 4mm rgba(0,0,0,.15); } }
+
+  /* headers */
+  .hdr { position: absolute; left: 0; right: 0; top: 0; height: 86mm; padding: 9mm 12mm 0 10mm; display: flex; gap: 6mm; color: #fff;
+    background: linear-gradient(160deg, var(--c) 0%, color-mix(in srgb, var(--c) 78%, #FFD54F) 100%); border-radius: 0 0 12mm 12mm; }
+  .dots { position: absolute; inset: 0; border-radius: inherit; opacity: .16; background-image: radial-gradient(circle, #fff 0.7mm, transparent 0.8mm); background-size: 7mm 7mm; }
+  .hdr-text { position: relative; flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+  .chip { display: inline-flex; align-items: center; gap: 2mm; background: rgba(255,255,255,.95); color: var(--d); border-radius: 6mm; padding: 1.2mm 4mm 0.8mm; font-size: 4.6mm; }
+  .hdr h1 { font-weight: normal; font-size: 11mm; line-height: 1.25; margin-top: 4mm; text-shadow: 0 0.6mm 0 rgba(0,0,0,.18); text-wrap: balance; }
+  .hdr .sub { font-size: 5mm; line-height: 1.5; margin-top: 2mm; opacity: .96; text-wrap: balance; }
+  .hdr .unitname { margin-top: auto; margin-bottom: 9mm; font-size: 4.2mm; background: rgba(255,255,255,.2); border-radius: 4mm; padding: 1.2mm 3.4mm 0.8mm; }
+  .hero { position: relative; flex: none; width: 88mm; height: 70.4mm; background: #FFFFFF; border-radius: 8mm; padding: 1.5mm; box-shadow: 0 1.2mm 0 rgba(0,0,0,.12); }
+  .hero > div { width: 100%; height: 100%; border-radius: 6.5mm; overflow: hidden; }
+  .hero.icon > div { display: grid; place-items: center; background: var(--t); }
+  .hero.icon .emo { font-size: 34mm; }
+
+  .hdr2 { position: absolute; left: 0; right: 0; top: 0; height: 28mm; padding: 0 12mm; display: flex; align-items: center; gap: 4mm; color: #fff;
+    background: linear-gradient(160deg, var(--c) 0%, color-mix(in srgb, var(--c) 78%, #FFD54F) 100%); border-radius: 0 0 9mm 9mm; }
+  .hdr2 h1 { font-weight: normal; font-size: 8mm; line-height: 1.2; }
+  .hdr2 .cont { margin-right: auto; font-size: 4.4mm; background: rgba(255,255,255,.22); border-radius: 4mm; padding: 1mm 3.4mm 0.6mm; white-space: nowrap; }
+
+  /* content box + auto-fit */
+  .content { position: absolute; left: 12mm; right: 12mm; bottom: 21mm; }
+  .p1 .content { top: 94mm; } .p2 .content { top: 36mm; }
+  .has-slogan .content { bottom: 36mm; }
+  .inner { display: flex; flex-direction: column; gap: 4.5mm; justify-content: space-evenly; }
+
+  .h { display: flex; align-items: center; gap: 2.4mm; font-size: 6mm; line-height: 1.3; color: var(--d); margin-bottom: 2.6mm; }
+  .h::before { content: ''; flex: none; width: 3.4mm; height: 3.4mm; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1.2mm var(--t2); }
+
+  .intro { display: flex; align-items: center; gap: 4mm; background: var(--t); border-radius: 6mm; padding: 4mm 5mm; border-right: 2mm solid var(--c); }
+  .intro .emo { font-size: 10mm; }
+  .intro p { font-size: 5mm; line-height: 1.65; text-wrap: pretty; }
+
+  .list { display: grid; gap: 3mm 6mm; }
+  .list.c2 { grid-template-columns: 1fr 1fr; }
+  .it { display: flex; align-items: center; gap: 3mm; }
+  .ei { flex: none; width: 12.5mm; height: 12.5mm; border-radius: 50%; background: var(--t); display: grid; place-items: center; box-shadow: inset 0 0 0 0.5mm var(--t2); }
+  .ei .emo { font-size: 6.6mm; }
+  .it p { font-size: 4.7mm; line-height: 1.55; text-wrap: pretty; }
+
+  .steps { display: grid; gap: 3.5mm; }
+  .step { position: relative; background: #FFFFFF; border: 0.6mm solid var(--t2); border-radius: 5mm; padding: 4mm 3mm 3.5mm; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 1.4mm; box-shadow: 0 0.8mm 0 var(--t2); }
+  .step .n { position: absolute; top: -2.6mm; right: 3mm; width: 8mm; height: 8mm; border-radius: 50%; background: var(--c); color: #fff;
+    display: grid; place-items: center; font-size: 4.8mm; line-height: 1; padding-top: 0.5mm; }
+  .step .emo { font-size: 8.5mm; }
+  .step b { font-weight: normal; font-size: 5.2mm; color: var(--d); line-height: 1.3; }
+  .step p { font-size: 4.4mm; line-height: 1.5; text-wrap: balance; }
+  .steps.row .step { flex-direction: row; text-align: right; gap: 3mm; padding: 3.5mm 4mm 3mm; }
+  .steps.row .step .tx { display: flex; flex-direction: column; gap: 0.6mm; }
+  .steps.row .step p { text-wrap: pretty; }
+
+  .dd { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .ddc { border-radius: 6mm; padding: 3.5mm 4mm 4mm; }
+  .ddc.ok { background: #E7F7EC; border: 0.7mm solid #8FD3A5; }
+  .ddc.no { background: #FFECE8; border: 0.7mm solid #F3A497; }
+  .ddc .t { display: flex; align-items: center; gap: 2mm; font-size: 5.4mm; margin-bottom: 2.5mm; }
+  .ddc.ok .t { color: #1E7A43; } .ddc.no .t { color: #B92D1C; }
+  .mk { width: 8mm; height: 8mm; flex: none; }
+  .ddc ul { list-style: none; display: flex; flex-direction: column; gap: 2.2mm; }
+  .ddc li { display: flex; align-items: center; gap: 2.4mm; font-size: 4.5mm; line-height: 1.45; }
+  .ddc li .emo { flex: none; width: 9mm; height: 9mm; border-radius: 50%; background: #FFFFFF; display: grid; place-items: center; font-size: 5.4mm; }
+
+  .warn { background: #FFF2EE; border: 0.8mm dashed #E2533A; border-radius: 6mm; padding: 4mm 5mm; }
+  .warn .t { display: flex; align-items: center; gap: 2.5mm; font-size: 5.2mm; line-height: 1.45; color: #A92A18; }
+  .warn .t .wk { flex: none; width: 10mm; height: 9mm; }
+  .warn ul { list-style: none; display: flex; flex-wrap: wrap; gap: 2.2mm; margin-top: 3mm; }
+  .warn li { background: #FFFFFF; border-radius: 4mm; padding: 1.4mm 3.4mm 1mm; font-size: 4.5mm; line-height: 1.4; box-shadow: inset 0 0 0 0.4mm #F6B8AC; }
+  .warn .note { margin-top: 3mm; font-size: 4.5mm; line-height: 1.6; color: #7A2414; }
+
+  .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.6mm; }
+  .chips.c2 { grid-template-columns: repeat(2, 1fr); }
+  .chips.c4 { grid-template-columns: repeat(4, 1fr); }
+  .chips.c5 { grid-template-columns: repeat(5, 1fr); }
+  .cp { display: flex; align-items: center; gap: 2.2mm; background: var(--t); border-radius: 5mm; padding: 2mm 3mm; font-size: 4.5mm; line-height: 1.35; }
+  .chips.c4 .cp, .chips.c5 .cp { flex-direction: column; text-align: center; padding: 3mm 1.5mm; gap: 1.6mm; }
+  .cp .emo { font-size: 7mm; flex: none; }
+  .chips.bad .cp { background: #FFECE8; box-shadow: inset 0 0 0 0.5mm #F6B8AC; }
+
+  .big { display: grid; gap: 3.5mm; }
+  .bg { display: flex; align-items: center; gap: 4mm; background: var(--t); border-radius: 6mm; padding: 3.5mm 5mm; }
+  .bg .num { flex: none; min-width: 30mm; text-align: center; background: var(--c); color: #fff; border-radius: 5mm; padding: 2.2mm 3mm 1.4mm; font-size: 7.6mm; line-height: 1.2; white-space: nowrap; }
+  .bg p { font-size: 4.8mm; line-height: 1.55; }
+  .big.cols { grid-template-columns: repeat(var(--n), 1fr); }
+  .big.cols .bg { flex-direction: column; text-align: center; padding: 4mm 3mm; gap: 2.5mm; }
+  .big.cols .bg .num { min-width: 0; width: 100%; }
+  .big.cols .bg p { font-size: 4.4mm; text-wrap: balance; }
+
+  .tip { display: flex; align-items: center; gap: 4mm; background: #FFF6D6; border-radius: 6mm; padding: 4mm 5mm; border: 0.7mm solid #F2CF63; }
+  .tip .emo { font-size: 9mm; }
+  .tip p { font-size: 4.8mm; line-height: 1.6; text-wrap: pretty; }
+
+  .fact { position: relative; background: #EEF4FF; border-radius: 6mm; padding: 4mm 5mm 3.4mm; border: 0.7mm solid #B8CDF5; }
+  .fact .t { display: flex; align-items: center; gap: 2mm; font-size: 5.2mm; color: #2350A8; }
+  .fact .t .emo { font-size: 7mm; }
+  .fact p { font-size: 4.7mm; line-height: 1.6; margin-top: 1.6mm; text-wrap: pretty; }
+  .fact .src { margin-top: 1.6mm; font-size: 3.7mm; color: #5A73A3; }
+
+  .art { display: flex; justify-content: center; }
+  .art > div { aspect-ratio: 300 / 240; }
+
+  .cards { display: grid; gap: 3mm; }
+  .card { background: #FFFFFF; border-radius: 5mm; padding: 3mm 3.4mm; box-shadow: inset 0 0 0 0.6mm var(--t2); display: flex; gap: 2.6mm; align-items: flex-start; }
+  .card .emo { font-size: 8mm; flex: none; }
+  .card b { display: block; font-weight: normal; font-size: 5mm; color: var(--d); line-height: 1.35; }
+  .card p { font-size: 4.3mm; line-height: 1.5; text-wrap: pretty; }
+
+  table.tb { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 4.5mm; line-height: 1.45; border-radius: 6mm; overflow: hidden; box-shadow: inset 0 0 0 0.6mm var(--t2); }
+  .tb th, .tb td { padding: 2.2mm 3mm 1.6mm; text-align: center; border-bottom: 0.4mm solid var(--t2); }
+  .tb th { font-weight: normal; }
+  .tb thead th { background: var(--c); color: #fff; font-size: 5mm; }
+  .tb tbody th { background: var(--t); color: var(--d); text-align: right; padding-right: 4mm; }
+  .tb tbody tr:last-child > * { border-bottom: 0; }
+
+  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .nm { display: flex; align-items: center; gap: 2.6mm; border-radius: 5mm; padding: 2.6mm 3.4mm; color: #fff; }
+  .nm .emo { font-size: 8mm; }
+  .nm b { font-weight: normal; display: block; font-size: 8mm; line-height: 1.1; }
+  .nm span { font-size: 4.1mm; line-height: 1.3; }
+
+  .dialog { display: flex; flex-direction: column; gap: 2.4mm; }
+  .ln { display: flex; align-items: flex-end; gap: 2.4mm; }
+  .ln .who { flex: none; width: 12mm; height: 12mm; border-radius: 50%; display: grid; place-items: center; font-size: 6.4mm; background: var(--t); }
+  .ln .bb { max-width: 78%; border-radius: 5mm; padding: 2.4mm 4mm 1.8mm; font-size: 4.6mm; line-height: 1.5; }
+  .ln.op { flex-direction: row-reverse; }
+  .ln.op .bb { background: #FFECE8; border-bottom-left-radius: 1mm; }
+  .ln.kid .bb { background: var(--t); border-bottom-right-radius: 1mm; }
+  .ln .bb small { display: block; font-size: 3.7mm; opacity: .7; }
+
+  .pictos { display: grid; gap: 4mm; }
+  .pic { text-align: center; }
+  .pic .im { width: 100%; aspect-ratio: 1; }
+  .pic span { display: flex; align-items: center; justify-content: center; gap: 1.6mm; margin-top: 1.4mm; font-size: 4.4mm; line-height: 1.35; }
+  .pic span .mk { width: 6mm; height: 6mm; }
+
+  .bars { display: flex; flex-direction: column; gap: 2.4mm; }
+  .br { display: flex; align-items: center; gap: 3mm; font-size: 4.5mm; }
+  .br .emo { font-size: 7mm; width: 9mm; text-align: center; }
+  .br .lb { width: 34mm; flex: none; }
+  .br .tr { flex: 1; height: 7mm; background: var(--t); border-radius: 4mm; overflow: hidden; }
+  .br .fl { height: 100%; border-radius: 4mm; background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 60%, #FFC531)); }
+  .br .vl { width: 30mm; flex: none; text-align: left; color: var(--d); }
+
+  .plate { display: flex; align-items: center; gap: 6mm; }
+  .plate .pie { flex: none; width: 64mm; height: 64mm; position: relative; }
+  .plate ul { list-style: none; display: flex; flex-direction: column; gap: 2.6mm; flex: 1; }
+  .plate li { display: flex; align-items: center; gap: 2.6mm; font-size: 4.5mm; line-height: 1.45; }
+  .plate li i { flex: none; width: 6mm; height: 6mm; border-radius: 1.6mm; }
+
+  .plate .ar { flex: none; width: 74mm; aspect-ratio: 300 / 240; }
+  .bins { display: grid; gap: 3.5mm; }
+  .bin { border-radius: 6mm; padding: 3.5mm 3.5mm 4mm; color: #fff; }
+  .bin .t { font-size: 5mm; display: flex; align-items: center; gap: 2mm; line-height: 1.3; }
+  .bin .t .emo { font-size: 7mm; }
+  .bin ul { list-style: none; display: grid; gap: 1.8mm; margin-top: 3mm; }
+  .bin li { background: rgba(255,255,255,.95); color: #12355B; border-radius: 4mm; padding: 1.4mm 2mm 1mm; font-size: 4.2mm; display: flex; align-items: center; gap: 1.6mm; }
+  .bin li .emo { font-size: 5.4mm; }
+  .tl { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2mm; }
+  .tlc { border-radius: 4mm; padding: 3mm 1.5mm 2.4mm; text-align: center; color: #fff; display: flex; flex-direction: column; gap: 1mm; }
+  .tlc b { font-weight: normal; font-size: 4.8mm; }
+  .tlc span { font-size: 4.2mm; }
+  .tll { display: flex; justify-content: center; gap: 5mm; margin-top: 2.4mm; font-size: 4.2mm; }
+  .tll span { display: flex; align-items: center; gap: 1.4mm; }
+  .tll i { width: 5mm; height: 5mm; border-radius: 1.4mm; }
+  .tln { margin-top: 2mm; font-size: 4.5mm; line-height: 1.6; text-align: center; }
+  .el { display: flex; gap: 5mm; align-items: stretch; }
+  .bars2 { flex: none; width: 62mm; display: flex; flex-direction: column; gap: 1.2mm; direction: ltr; }
+  .bars2 div { height: 6.4mm; border-radius: 0 3mm 3mm 0; }
+  .elt { display: flex; flex-direction: column; justify-content: space-between; font-size: 4.4mm; color: var(--d); }
+  .elt p { font-size: 4.6mm; line-height: 1.6; color: #12355B; }
+
+  /* activities */
+  .quiz { display: flex; flex-direction: column; gap: 2.2mm; }
+  .q { display: flex; align-items: center; gap: 3mm; background: #FFFFFF; border-radius: 4.5mm; padding: 2.2mm 3.4mm 1.8mm; box-shadow: inset 0 0 0 0.5mm var(--t2); }
+  .q .qn { flex: none; width: 7.5mm; height: 7.5mm; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-size: 4.2mm; line-height: 1; padding-top: 0.4mm; }
+  .q p { flex: 1; font-size: 4.5mm; line-height: 1.45; }
+  .q .op { flex: none; display: flex; gap: 2mm; font-size: 3.9mm; }
+  .q .op span { display: flex; align-items: center; gap: 1.2mm; }
+  .q .op i { width: 5mm; height: 5mm; border-radius: 1.2mm; border: 0.5mm solid var(--c); background: #fff; }
+  .ans { margin-top: 2mm; font-size: 3.8mm; color: #6A7F96; text-align: center; }
+
+  table.trk { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0 1.2mm; font-size: 4.2mm; }
+  .trk col.hc { width: 36%; }
+  .trk th { font-weight: normal; color: var(--d); font-size: 3.6mm; text-align: center; white-space: nowrap; }
+  .trk td.hb { text-align: right; background: var(--t); border-radius: 3mm; padding: 1.6mm 2.6mm 1.2mm; line-height: 1.35; }
+  .trk td.bx { text-align: center; }
+  .trk td.bx i { display: inline-block; width: 9mm; height: 9mm; border-radius: 2.6mm; border: 0.5mm dashed var(--c); background: #fff; vertical-align: middle; }
+
+  .pledge { border-radius: 7mm; padding: 5mm 6mm; background: linear-gradient(135deg, var(--t), #FFF6D6); border: 0.8mm solid var(--t2); text-align: center; }
+  .pledge .t { font-size: 6.4mm; color: var(--d); }
+  .pledge p { font-size: 4.8mm; line-height: 1.8; margin-top: 2mm; }
+  .pledge .sig { display: flex; justify-content: space-around; margin-top: 4mm; font-size: 4.4mm; color: #4A607A; }
+  .pledge .sig span { border-top: 0.5mm dashed #9DB3CC; padding-top: 1.4mm; min-width: 50mm; }
+
+  .srcs { list-style: none; display: flex; flex-direction: column; gap: 2mm; counter-reset: s; }
+  .srcs li { counter-increment: s; display: flex; gap: 2.6mm; align-items: flex-start; background: #F6F9FC; border-radius: 4mm; padding: 2mm 3mm 1.6mm; }
+  .srcs li::before { content: counter(s, persian); flex: none; width: 7mm; height: 7mm; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-size: 4mm; line-height: 1; padding-top: .3mm; }
+  .srcs .o { font-size: 4.4mm; line-height: 1.4; }
+  .srcs .en { display: block; font-size: 3.2mm; line-height: 1.4; color: #4A607A; text-align: left; margin-top: .6mm; }
+  .disc { font-size: 4.1mm; line-height: 1.65; color: #4A607A; background: #F6F9FC; border-radius: 4mm; padding: 3mm 4mm; }
+
+  /* slogan + footer */
+  .slogan { position: absolute; left: 12mm; right: 12mm; bottom: 19mm; height: 13mm; border-radius: 7mm; display: flex; align-items: center; justify-content: center; gap: 3mm;
+    background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 70%, #FFC531)); color: #fff; font-size: 6.2mm; text-shadow: 0 0.5mm 0 rgba(0,0,0,.18); }
+  .slogan .emo { font-size: 6.4mm; text-shadow: none; }
+  .foot { position: absolute; left: 12mm; right: 12mm; bottom: 7mm; height: 8mm; display: flex; align-items: center; justify-content: space-between; font-size: 3.8mm; color: #6A7F96; }
+  .foot .by { color: var(--d); }
+  .foot .sep { display: inline-block; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--c); margin: 0 2.2mm 0.5mm; vertical-align: middle; }
+  .foot .pn { width: 8mm; height: 8mm; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-size: 4.2mm; line-height: 1; padding-top: 0.4mm; }
+
+  /* cover */
+  .cover { background: linear-gradient(165deg, var(--c) 0%, color-mix(in srgb, var(--c) 72%, #0E9F9A) 55%, color-mix(in srgb, var(--c) 55%, #FFC531) 100%); color: #fff; }
+  .cover .dots { border-radius: 0; opacity: .12; }
+  .cover .top { position: absolute; top: 14mm; left: 14mm; right: 14mm; display: flex; justify-content: space-between; align-items: center; font-size: 4.6mm; }
+  .cover .top .chip { font-size: 5mm; }
+  .cover .kick { position: absolute; top: 30mm; left: 0; right: 0; text-align: center; font-size: 5.4mm; opacity: .95; }
+  .cover h1 { position: absolute; top: 40mm; left: 12mm; right: 12mm; text-align: center; font-weight: normal; font-size: 13mm; line-height: 1.3; text-shadow: 0 0.8mm 0 rgba(0,0,0,.2); text-wrap: balance; }
+  .cover .art2 { position: absolute; top: 92mm; left: 37mm; width: 136mm; height: 108.8mm; background: #fff; border-radius: 12mm; padding: 2mm; box-shadow: 0 1.5mm 0 rgba(0,0,0,.15); }
+  .cover .art2 > div { width: 100%; height: 100%; border-radius: 10mm; overflow: hidden; }
+  .cover .tags { position: absolute; top: 208mm; left: 14mm; right: 14mm; display: flex; flex-wrap: wrap; justify-content: center; gap: 2.2mm; }
+  .cover .tags span { background: rgba(255,255,255,.2); border-radius: 4mm; padding: 1.2mm 3.4mm 0.8mm; font-size: 4.4mm; }
+  .cover .sci { position: absolute; bottom: 42mm; left: 0; right: 0; text-align: center; font-size: 4.4mm; opacity: .95; }
+  .cover .by2 { position: absolute; bottom: 18mm; left: 50%; transform: translateX(-50%); background: #fff; color: #12355B; border-radius: 8mm; padding: 3mm 9mm 2.4mm;
+    font-size: 7mm; white-space: nowrap; box-shadow: 0 1.2mm 0 rgba(0,0,0,.18); }
+  .cover .by2 b { font-weight: normal; color: var(--c); }
+
+  /* contents */
+  .toc .rows { display: flex; flex-direction: column; gap: 2.2mm; }
+  .toc .r { display: flex; align-items: center; gap: 3mm; font-size: 5mm; line-height: 1.3; background: #F5F8FC; border-radius: 4.5mm; padding: 1.8mm 3mm 1.4mm; }
+  .toc .r .n { flex: none; width: 8.5mm; height: 8.5mm; border-radius: 50%; color: #fff; background: var(--c); display: grid; place-items: center; font-size: 4.4mm; line-height: 1; padding-top: 0.4mm; }
+  .toc .r .e { font-size: 6mm; }
+  .toc .r .ld { flex: 1; border-bottom: 0.5mm dotted #9DB3CC; margin: 0 2mm; transform: translateY(-1mm); }
+  .toc .r .pg { flex: none; min-width: 9mm; text-align: center; color: var(--c); }
+  .obj { background: var(--t); border-radius: 6mm; padding: 4mm 5mm; }
+  .obj ul { list-style: none; display: flex; flex-direction: column; gap: 1.8mm; }
+  .obj li { display: flex; gap: 2.4mm; align-items: flex-start; font-size: 4.6mm; line-height: 1.55; }
+  .obj li .mk { width: 6mm; height: 6mm; margin-top: 0.6mm; }
+</style>
+<script src="characters.js"></script>
+<script src="scenes.js"></script>
+<script src="scenes2.js"></script>
+</head>
+<body>
+<div id="book"></div>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const u = params.get('u') || '01';
+  const s = document.createElement('script');
+  s.src = `units/u${u}.js`;
+  s.onload = () => build(window.UNIT);
+  document.head.appendChild(s);
+
+  function build(U) {
+    const COMPILER = 'یاسر عمری';
+    const FA = '۰۱۲۳۴۵۶۷۸۹';
+    const fa = (n) => String(n).replace(/[0-9]/g, (d) => FA[d]);
+    const E = (e) => `<span class="emo">${e}</span>`;
+    const OK = MARK(true), NO = MARK(false);
+    const WARN = '<svg viewBox="0 0 100 90"><path d="M50 4 L96 86 H4 Z" fill="#FFC531" stroke="#12355B" stroke-width="6" stroke-linejoin="round"/><rect x="45" y="30" width="10" height="32" rx="5" fill="#12355B"/><circle cx="50" cy="73" r="6" fill="#12355B"/></svg>';
+    const H = (h) => (h ? `<div class="h">${h}</div>` : '');
+    document.title = `سرفصل ${fa(U.n)}: ${U.title} – گردآورنده: ${COMPILER}`;
+
+    const B = {
+      intro: (b) => `<div class="intro">${E(b.e)}<p>${b.text}</p></div>`,
+      list: (b) => `<div>${H(b.h)}<div class="list ${b.cols === 2 ? 'c2' : ''}">` + b.items.map(([e, t]) => `<div class="it"><div class="ei">${E(e)}</div><p>${t}</p></div>`).join('') + `</div></div>`,
+      steps: (b) => {
+        const row = !!b.row;
+        return `<div>${H(b.h)}<div class="steps ${row ? 'row' : ''}" style="grid-template-columns:repeat(${b.cols},1fr)">` +
+          b.items.map(([e, ti, t], i) => row
+            ? `<div class="step"><span class="n">${fa(i + 1)}</span>${E(e)}<div class="tx"><b>${ti}</b><p>${t}</p></div></div>`
+            : `<div class="step"><span class="n">${fa(i + 1)}</span>${E(e)}${ti ? `<b>${ti}</b>` : ''}<p>${t}</p></div>`).join('') + `</div></div>`;
+      },
+      dodont: (b) => `<div>${H(b.h)}<div class="dd">` + [['ok', b.do, OK], ['no', b.dont, NO]].map(([k, [title, items], m]) =>
+        `<div class="ddc ${k}"><div class="t"><span class="mk">${m}</span>${title}</div><ul>` + items.map(([e, t]) => `<li>${E(e)}<span>${t}</span></li>`).join('') + `</ul></div>`).join('') + `</div></div>`,
+      warn: (b) => `<div class="warn"><div class="t"><span class="wk">${WARN}</span>${b.h}</div>${b.items ? `<ul>${b.items.map((t) => `<li>${t}</li>`).join('')}</ul>` : ''}${b.note ? `<div class="note">${b.note}</div>` : ''}</div>`,
+      chips: (b) => `<div>${H(b.h)}<div class="chips ${b.tone === 'bad' ? 'bad' : ''} ${b.cols ? 'c' + b.cols : ''}">` + b.items.map(([e, t]) => `<div class="cp">${E(e)}<span>${t}</span></div>`).join('') + `</div></div>`,
+      big: (b) => `<div>${H(b.h)}<div class="big ${b.items.length > 1 ? 'cols' : ''}" style="--n:${b.items.length}">` + b.items.map(([n, t]) => `<div class="bg"><div class="num">${n}</div><p>${t}</p></div>`).join('') + `</div></div>`,
+      tip: (b) => `<div class="tip">${E(b.e || '💡')}<p>${b.text}</p></div>`,
+      fact: (b) => `<div class="fact"><div class="t">${E(b.e || '🔬')}${b.h || 'آیا می‌دانستید؟'}</div><p>${b.text}</p>${b.src ? `<div class="src">منبع: ${b.src}</div>` : ''}</div>`,
+      art: (b) => `<div class="art"><div style="height:${b.h}mm">${SCENES[b.s]()}</div></div>`,
+      cards: (b) => `<div>${H(b.h)}<div class="cards" style="grid-template-columns:repeat(${b.cols || 2},1fr)">` +
+        b.items.map(([e, ti, t]) => `<div class="card">${E(e)}<div><b>${ti}</b>${t ? `<p>${t}</p>` : ''}</div></div>`).join('') + `</div></div>`,
+      table: (b) => `<div>${H(b.h)}<table class="tb"><thead><tr>${b.head.map((x) => `<th>${x}</th>`).join('')}</tr></thead><tbody>` +
+        b.rows.map((r) => `<tr><th>${r[0]}</th>${r.slice(1).map((x) => `<td>${x}</td>`).join('')}</tr>`).join('') + `</tbody></table></div>`,
+      nums: (b) => `<div>${H(b.h)}<div class="nums">` + b.items.map(([e, n, t, c]) => `<div class="nm" style="background:${c}">${E(e)}<div><b>${n}</b><span>${t}</span></div></div>`).join('') + `</div></div>`,
+      dialog: (b) => `<div>${H(b.h)}<div class="dialog">` + b.lines.map(([w, t]) =>
+        `<div class="ln ${w}"><span class="who">${E(w === 'op' ? '🎧' : '👦')}</span><div class="bb"><small>${w === 'op' ? 'کارشناس ۱۱۵' : 'من'}</small>${t}</div></div>`).join('') + `</div></div>`,
+      pictos: (b) => `<div>${H(b.h)}<div class="pictos" style="grid-template-columns:repeat(${b.items.length},1fr)">` +
+        b.items.map(([k, t, ok]) => `<div class="pic"><div class="im">${PICTO(k, ok)}</div><span><span class="mk">${ok ? OK : NO}</span>${t}</span></div>`).join('') + `</div></div>`,
+      bars: (b) => `<div>${H(b.h)}<div class="bars">` + b.items.map(([e, l, v, w]) =>
+        `<div class="br">${E(e)}<span class="lb">${l}</span><div class="tr"><div class="fl" style="width:${w}%"></div></div><span class="vl">${v}</span></div>`).join('') +
+        `</div>${b.note ? `<div class="ans" style="text-align:right">${b.note}</div>` : ''}</div>`,
+      plate: (b) => {
+        const pie = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="49" fill="#FFFFFF" stroke="#D6E4EE" stroke-width="1.5"/>
+          <path d="M50 50 L50 6 A44 44 0 0 0 50 94 Z" fill="#7CCB6B"/><path d="M50 50 L50 94 A44 44 0 0 0 94 50 Z" fill="#F2B84B"/>
+          <path d="M50 50 L94 50 A44 44 0 0 0 50 6 Z" fill="#E8735A"/><path d="M50 6 V94 M50 50 H94" stroke="#FFFFFF" stroke-width="1.6"/></svg>`;
+        const em = (e, x, y) => `<span class="emo" style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);font-size:9mm">${e}</span>`;
+        return `<div>${H(b.h)}<div class="plate"><div class="pie">${pie}${em('🥦', 28, 40)}${em('🍎', 30, 64)}${em('🍗', 68, 30)}${em('🍞', 68, 70)}</div><ul>` +
+          b.items.map(([c, t]) => `<li><i style="background:${c}"></i>${t}</li>`).join('') + `</ul></div></div>`;
+      },
+      quiz: (b) => `<div>${H(b.h || 'درست یا نادرست؟')}<div class="quiz">` + b.items.map(([t], i) =>
+        `<div class="q"><span class="qn">${fa(i + 1)}</span><p>${t}</p><div class="op"><span><i></i>درست</span><span><i></i>نادرست</span></div></div>`).join('') +
+        `</div></div>`,
+      answers: (b) => `<div class="ans">${E('🔑')} پاسخ تمرین «درست یا نادرست؟»: ${b.items.map(([, ok], i) => `${fa(i + 1)}- ${ok ? 'درست' : 'نادرست'}`).join('، ')}</div>`,
+      tracker: (b) => `<div>${H(b.h || 'جدول عادت‌های خوب من در این هفته')}<table class="trk"><colgroup><col class="hc">${'<col>'.repeat(7)}</colgroup><thead><tr><th></th>` +
+        ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'].map((d) => `<th>${d}</th>`).join('') + `</tr></thead><tbody>` +
+        b.rows.map((r) => `<tr><td class="hb">${r}</td>${'<td class="bx"><i></i></td>'.repeat(7)}</tr>`).join('') +
+        `</tbody></table><div class="ans" style="text-align:right">هر روز که این کار را انجام دادی، خانه آن روز را رنگ کن یا تیک بزن.</div></div>`,
+      pledge: (b) => `<div class="pledge"><div class="t">${E('🤝')} پیمان من</div><p>${b.text}</p><div class="sig"><span>نام و نام خانوادگی</span><span>امضای من</span><span>امضای ولی</span></div></div>`,
+      sources: (b) => `<div>${H('منابع علمی')}<ol class="srcs">` + b.items.map(([fa1, en]) => `<li><div class="o">${fa1}${en ? `<span class="en">${en}</span>` : ''}</div></li>`).join('') + `</ol></div>`,
+      disc: (b) => `<div class="disc">${b.text}</div>`,
+      artlist: (b) => `<div>${H(b.h)}<div class="plate"><div class="ar">${SCENES[b.s]()}</div><ul>` + b.items.map(([c, t]) => `<li><i style="background:${c}"></i>${t}</li>`).join('') + `</ul></div></div>`,
+      bins: (b) => `<div>${H(b.h)}<div class="bins" style="grid-template-columns:repeat(${b.items.length},1fr)">` + b.items.map(([c, e, t, its]) =>
+        `<div class="bin" style="background:${c}"><div class="t">${E(e)}${t}</div><ul>${its.map(([e2, l]) => `<li>${E(e2)}${l}</li>`).join('')}</ul></div>`).join('') + `</div></div>`,
+      tlabel: (b) => `<div>${H(b.h)}<div class="tl">` + b.items.map(([n, v, c]) => `<div class="tlc" style="background:${c}"><b>${n}</b><span>${v}</span></div>`).join('') +
+        `</div><div class="tll"><span><i style="background:#2EAD4B"></i>سبز: کم</span><span><i style="background:#F7C81E"></i>زرد: متوسط</span><span><i style="background:#E0302A"></i>قرمز: زیاد</span></div>${b.note ? `<p class="tln">${b.note}</p>` : ''}</div>`,
+      elabel: (b) => `<div>${H(b.h)}<div class="el"><div class="bars2">` + ['#1B9E3E', '#55B848', '#B7D433', '#F4E01F', '#F6B21A', '#EE6D22', '#E0302A'].map((c, i) =>
+        `<div style="width:${40 + i * 10}%;background:${c}"></div>`).join('') + `</div><div class="elt"><span>${E('⬆️')} کم‌مصرف‌ترین</span><p>${b.text}</p><span>${E('⬇️')} پرمصرف‌ترین</span></div></div></div>`,
+    };
+
+    let html = '', pageNo = 0;
+    const foot = () => `<div class="foot"><span><span class="by">گردآورنده: ${COMPILER}</span><i class="sep"></i>سرفصل ${fa(U.n)}: ${U.title}</span><span class="pn">${fa(pageNo)}</span></div>`;
+
+    // plan pages
+    const secStart = [];
+    let p = 3;
+    U.sections.forEach((s) => { secStart.push(p); p += s.pages.length; });
+    const actPage = p;
+
+    // cover
+    pageNo = 1;
+    html += `<section class="page cover" style="--c:${U.color}" data-kind="cover"><div class="dots"></div>
+      <div class="top"><span class="chip">سرفصل ${fa(U.n)} از ${fa(9)}</span><span>ویژه دانش‌آموزان دوره اول و دوم ابتدایی</span></div>
+      <div class="kick">${U.kicker}</div><h1>${U.full}</h1>
+      <div class="art2"><div>${SCENES[U.cover]()}</div></div>
+      <div class="tags">${U.sections.map((s) => `<span>${s.title}</span>`).join('')}</div>
+      <div class="sci">${E('🔬')} تهیه‌شده بر پایه منابع علمی معتبر</div>
+      <div class="by2">گردآورنده: <b>${COMPILER}</b></div></section>`;
+
+    // contents + objectives
+    pageNo = 2;
+    const toc = `<div class="toc"><div class="h">در این کتابچه می‌خوانیم</div><div class="rows">` +
+      U.sections.map((s, i) => `<div class="r"><span class="n">${fa(i + 1)}</span>${E(s.icon)}<span>${s.title}</span><span class="ld"></span><span class="pg">${fa(secStart[i])}</span></div>`).join('') +
+      `<div class="r"><span class="n">${E('✏️')}</span><span>بازی، تمرین و جدول عادت‌ها</span><span class="ld"></span><span class="pg">${fa(actPage)}</span></div>` +
+      `<div class="r"><span class="n">${E('📚')}</span><span>پیمان من و منابع علمی</span><span class="ld"></span><span class="pg">${fa(actPage + 1)}</span></div></div></div>`;
+    const obj = `<div class="obj"><div class="h">پس از خواندن این کتابچه می‌توانم:</div><ul>${U.objectives.map((o) => `<li><span class="mk">${OK}</span>${o}</li>`).join('')}</ul></div>`;
+    html += `<section class="page p2" style="--c:${U.color}" data-kind="toc"><div class="hdr2"><span class="chip">سرفصل ${fa(U.n)}</span><h1>${U.title}</h1></div>` +
+      `<div class="content">${toc}${obj}${B.tip({ e: '👨‍👩‍👦', text: U.parents })}</div>${foot()}</section>`;
+
+    // sections
+    U.sections.forEach((s, si) => {
+      s.pages.forEach((blocks, pi) => {
+        pageNo++;
+        const first = pi === 0, last = pi === s.pages.length - 1;
+        const heroHtml = s.hero ? `<div class="hero"><div>${SCENES[s.hero]()}</div></div>` : `<div class="hero icon"><div>${E(s.icon)}</div></div>`;
+        const head = first
+          ? `<div class="hdr"><div class="dots"></div><div class="hdr-text"><span class="chip">${E(s.icon)} بخش ${fa(si + 1)}</span><h1>${s.title}</h1><div class="sub">${s.sub}</div>` +
+            `<div class="unitname">سرفصل ${fa(U.n)}: ${U.title}</div></div>${heroHtml}</div>`
+          : `<div class="hdr2"><span class="chip">${E(s.icon)} بخش ${fa(si + 1)}</span><h1>${s.title}</h1><span class="cont">ادامه</span></div>`;
+        const slog = last && s.slogan;
+        html += `<section class="page ${first ? 'p1' : 'p2'} ${slog ? 'has-slogan' : ''}" style="--c:${s.color || U.color}" data-sec="${si + 1}" data-page="${pi + 1}">` +
+          head + `<div class="content">${blocks.map((b) => B[b.t](b)).join('')}</div>` +
+          (slog ? `<div class="slogan">${E('⭐')}${s.slogan}${E('⭐')}</div>` : '') + foot() + `</section>`;
+      });
+    });
+
+    // activities
+    pageNo++;
+    html += `<section class="page p2" style="--c:${U.color}" data-kind="activity"><div class="hdr2"><span class="chip">${E('✏️')} تمرین</span><h1>بازی و تمرین</h1></div>` +
+      `<div class="content">${B.quiz({ items: U.quiz })}${B.tracker(Array.isArray(U.tracker) ? { rows: U.tracker } : U.tracker)}</div>${foot()}</section>`;
+    // pledge + sources
+    pageNo++;
+    html += `<section class="page p2 has-slogan" style="--c:${U.color}" data-kind="sources"><div class="hdr2"><span class="chip">${E('📚')} پایان</span><h1>پیمان من و منابع علمی</h1></div>` +
+      `<div class="content">${B.pledge({ text: U.pledge })}${B.sources({ items: U.sources })}${B.answers({ items: U.quiz })}${B.disc({ text: 'این کتابچه بر پایه توصیه‌های منابع بالا و به زبان ساده برای کودکان تهیه شده است و جای مشاوره با پزشک و کارکنان بهداشت را نمی‌گیرد. برای تشخیص و درمان همیشه با کمک پدر و مادر به پزشک یا مرکز بهداشت مراجعه کنید.' })}</div>` +
+      `<div class="slogan">${E('⭐')}${U.slogan}${E('⭐')}</div>${foot()}</section>`;
+
+    document.getElementById('book').innerHTML = html.replace(/هٔ/g, 'ۀ');
+
+    // auto-fit after fonts load
+    const mm = 96 / 25.4;
+    const fit = () => document.querySelectorAll('.page .content').forEach((c) => {
+      const inner = document.createElement('div');
+      inner.className = 'inner';
+      while (c.firstChild) inner.appendChild(c.firstChild);
+      c.appendChild(inner);
+      const W = c.clientWidth / mm, Hh = c.clientHeight / mm, n = inner.children.length;
+      const fits = (k) => {
+        inner.style.zoom = k; inner.style.width = (W / k) + 'mm'; inner.style.height = 'auto';
+        const need = [...inner.children].reduce((sum, el) => sum + el.getBoundingClientRect().height / mm, 0) + (n - 1) * 5 * k;
+        return need <= Hh - 1;
+      };
+      let k = 1.28;
+      while (k > 0.82 && !fits(k)) k = Math.round((k - 0.01) * 100) / 100;
+      fits(k);
+      inner.style.height = (Hh / k) + 'mm';
+      c.dataset.zoom = k;
+    });
+    Promise.all([document.fonts.load('20px Titr'), document.fonts.load('20px "Noto Color Emoji"', '🦷'), document.fonts.load('12px Inter', 'A')])
+      .then(() => document.fonts.ready)
+      .then(() => { fit(); document.documentElement.dataset.ready = '1'; });
+  }
+})();
+</script>
+</body>
+</html>

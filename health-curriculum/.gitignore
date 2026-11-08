@@ -1,0 +1,3 @@
+# B Titr font is fetched by src/fetch-font.sh (not redistributed here)
+src/fonts/
+output/.text-*.txt
