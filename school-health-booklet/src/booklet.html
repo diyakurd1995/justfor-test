@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<title>مجموعه آموزشی سلامت و ایمنی – ویژه دانش‌آموزان دبستان</title>
+<style>
+  @font-face { font-family: 'Titr'; src: url('fonts/Titr.ttf') format('truetype'); }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #E9EEF3; }
+  body { font-family: 'Titr', 'Noto Color Emoji'; color: #12355B; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .emo { font-family: 'Noto Color Emoji'; line-height: 1; }
+  svg { display: block; width: 100%; height: 100%; }
+
+  .page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #FFFFFF; direction: rtl;
+    page-break-after: always; break-after: page;
+    --t: color-mix(in srgb, var(--c) 11%, white); --t2: color-mix(in srgb, var(--c) 24%, white);
+    --d: color-mix(in srgb, var(--c) 72%, #0B1B33); --l: color-mix(in srgb, var(--c) 55%, white); }
+  @media screen { .page { margin: 6mm auto; box-shadow: 0 1mm 4mm rgba(0,0,0,.15); } }
+  .page { background: linear-gradient(180deg, #FFFFFF 62%, var(--t) 100%); }
+
+  /* ---------- headers ---------- */
+  .hdr { position: absolute; left: 0; right: 0; top: 0; height: 86mm; padding: 9mm 12mm 0 10mm; display: flex; gap: 6mm; color: #fff;
+    background: linear-gradient(160deg, var(--c) 0%, color-mix(in srgb, var(--c) 78%, #FFD54F) 100%); border-radius: 0 0 12mm 12mm; }
+  .hdr .dots { position: absolute; inset: 0; border-radius: 0 0 12mm 12mm; opacity: .16;
+    background-image: radial-gradient(circle, #fff 0.7mm, transparent 0.8mm); background-size: 7mm 7mm; }
+  .hdr-text { position: relative; flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+  .chip { display: inline-flex; align-items: center; gap: 2mm; background: rgba(255,255,255,.95); color: var(--d); border-radius: 6mm;
+    padding: 1.2mm 4mm 0.8mm; font-size: 4.6mm; }
+  .hdr h1 { font-weight: normal; font-size: 11.5mm; line-height: 1.25; margin-top: 4mm; text-shadow: 0 0.6mm 0 rgba(0,0,0,.18); text-wrap: balance; }
+  .hdr .sub { font-size: 5mm; line-height: 1.45; margin-top: 2mm; opacity: .95; text-wrap: balance; }
+  .by { margin-top: auto; margin-bottom: 9mm; display: inline-flex; align-items: center; gap: 2mm; background: #FFFFFF; color: var(--d);
+    border-radius: 5mm; padding: 1.6mm 4mm 1.2mm; font-size: 4.6mm; box-shadow: 0 0.6mm 0 rgba(0,0,0,.15); }
+  .by b { font-weight: normal; color: var(--c); }
+  .hero { position: relative; flex: none; width: 88mm; height: 70.4mm; background: #FFFFFF; border-radius: 8mm; padding: 1.5mm;
+    box-shadow: 0 1.2mm 0 rgba(0,0,0,.12); }
+  .hero > div { width: 100%; height: 100%; border-radius: 6.5mm; overflow: hidden; }
+
+  .hdr2 { position: absolute; left: 0; right: 0; top: 0; height: 28mm; padding: 0 12mm; display: flex; align-items: center; gap: 4mm; color: #fff;
+    background: linear-gradient(160deg, var(--c) 0%, color-mix(in srgb, var(--c) 78%, #FFD54F) 100%); border-radius: 0 0 9mm 9mm; }
+  .hdr2 h1 { font-weight: normal; font-size: 8.4mm; line-height: 1.2; }
+  .hdr2 .cont { margin-right: auto; font-size: 4.4mm; background: rgba(255,255,255,.22); border-radius: 4mm; padding: 1mm 3.4mm 0.6mm; }
+
+  /* ---------- body ---------- */
+  .content { position: absolute; left: 12mm; right: 12mm; }
+  .inner { display: flex; flex-direction: column; gap: 4.5mm; justify-content: space-evenly; }
+  .p1 .content { top: 94mm; } .p2 .content { top: 36mm; }
+  .content { bottom: 21mm; } .has-slogan .content { bottom: 36mm; }
+
+  .h { display: flex; align-items: center; gap: 2.4mm; font-size: 6mm; line-height: 1.3; color: var(--d); margin-bottom: 2.6mm; }
+  .h::before { content: ''; flex: none; width: 3.4mm; height: 3.4mm; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1.2mm var(--t2); }
+
+  .intro { display: flex; align-items: center; gap: 4mm; background: var(--t); border-radius: 6mm; padding: 4mm 5mm; border-right: 2mm solid var(--c); }
+  .intro .emo { font-size: 10mm; }
+  .intro p { font-size: 5mm; line-height: 1.6; text-wrap: pretty; }
+
+  .list { display: grid; gap: 3mm 6mm; }
+  .list.c2 { grid-template-columns: 1fr 1fr; }
+  .it { display: flex; align-items: center; gap: 3mm; }
+  .ei { flex: none; width: 12.5mm; height: 12.5mm; border-radius: 50%; background: var(--t); display: grid; place-items: center; box-shadow: inset 0 0 0 0.5mm var(--t2); }
+  .ei .emo { font-size: 6.6mm; }
+  .it p { font-size: 4.7mm; line-height: 1.5; text-wrap: pretty; }
+
+  .steps { display: grid; gap: 3.5mm; }
+  .step { position: relative; background: #FFFFFF; border: 0.6mm solid var(--t2); border-radius: 5mm; padding: 4mm 3.5mm 3.5mm; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 1.4mm; box-shadow: 0 0.8mm 0 var(--t2); }
+  .step .n { position: absolute; top: -2.6mm; right: 3mm; width: 8mm; height: 8mm; border-radius: 50%; background: var(--c); color: #fff;
+    display: grid; place-items: center; font-size: 4.8mm; line-height: 1; padding-top: 0.5mm; }
+  .step .emo { font-size: 8.5mm; }
+  .step b { font-weight: normal; font-size: 5.4mm; color: var(--d); line-height: 1.3; }
+  .step p { font-size: 4.4mm; line-height: 1.5; text-wrap: balance; }
+  .steps.row .step { flex-direction: row; text-align: right; align-items: center; gap: 3mm; padding: 3.5mm 4mm 3mm; }
+  .steps.row .step .tx { display: flex; flex-direction: column; gap: 0.6mm; }
+  .steps.row .step p { text-wrap: pretty; }
+
+  .dd { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .ddc { border-radius: 6mm; padding: 3.5mm 4mm 4mm; }
+  .ddc.ok { background: #E7F7EC; border: 0.7mm solid #8FD3A5; }
+  .ddc.no { background: #FFECE8; border: 0.7mm solid #F3A497; }
+  .ddc .t { display: flex; align-items: center; gap: 2mm; font-size: 5.6mm; margin-bottom: 2.5mm; }
+  .ddc.ok .t { color: #1E7A43; } .ddc.no .t { color: #B92D1C; }
+  .ddc .t .mk { width: 8mm; height: 8mm; flex: none; }
+  .ddc ul { list-style: none; display: flex; flex-direction: column; gap: 2.2mm; }
+  .ddc li { display: flex; align-items: center; gap: 2.4mm; font-size: 4.5mm; line-height: 1.45; }
+  .ddc li .emo { flex: none; width: 9mm; height: 9mm; border-radius: 50%; background: #FFFFFF; display: grid; place-items: center; font-size: 5.4mm; }
+
+  .warn { background: #FFF2EE; border: 0.8mm dashed #E2533A; border-radius: 6mm; padding: 4mm 5mm; }
+  .warn .t { display: flex; align-items: center; gap: 2.5mm; font-size: 5.2mm; line-height: 1.45; color: #A92A18; }
+  .warn .t .mk { flex: none; width: 10mm; height: 9mm; }
+  .warn ul { list-style: none; display: flex; flex-wrap: wrap; gap: 2.2mm; margin-top: 3mm; }
+  .warn li { background: #FFFFFF; border-radius: 4mm; padding: 1.4mm 3.4mm 1mm; font-size: 4.5mm; line-height: 1.4; box-shadow: inset 0 0 0 0.4mm #F6B8AC; }
+  .warn .note { margin-top: 3mm; font-size: 4.5mm; line-height: 1.55; color: #7A2414; }
+
+  .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.6mm; }
+  .chips.c4 { grid-template-columns: repeat(2, 1fr); }
+  .chips.c5 { grid-template-columns: repeat(5, 1fr); }
+  .cp { display: flex; align-items: center; gap: 2.2mm; background: var(--t); border-radius: 5mm; padding: 2mm 3mm; font-size: 4.5mm; line-height: 1.35; }
+  .chips.c5 .cp { flex-direction: column; text-align: center; padding: 3mm 1.5mm; gap: 1.6mm; }
+  .cp .emo { font-size: 7mm; flex: none; }
+  .chips.bad .cp { background: #FFECE8; box-shadow: inset 0 0 0 0.5mm #F6B8AC; }
+
+  .big { display: grid; gap: 3.5mm; }
+  .bg { display: flex; align-items: center; gap: 4mm; background: var(--t); border-radius: 6mm; padding: 3.5mm 5mm; }
+  .bg .num { flex: none; min-width: 30mm; text-align: center; background: var(--c); color: #fff; border-radius: 5mm; padding: 2.2mm 3mm 1.4mm;
+    font-size: 8mm; line-height: 1.2; white-space: nowrap; }
+  .bg p { font-size: 4.8mm; line-height: 1.55; }
+  .big.cols { grid-template-columns: repeat(3, 1fr); }
+  .big.cols .bg { flex-direction: column; text-align: center; padding: 4mm 3mm; gap: 2.5mm; }
+  .big.cols .bg .num { min-width: 0; width: 100%; }
+  .big.cols .bg p { font-size: 4.4mm; text-wrap: balance; }
+
+  .tip { display: flex; align-items: center; gap: 4mm; background: #FFF6D6; border-radius: 6mm; padding: 4mm 5mm; border: 0.7mm solid #F2CF63; }
+  .tip .emo { font-size: 9mm; }
+  .tip p { font-size: 4.8mm; line-height: 1.6; text-wrap: pretty; }
+
+  .art { display: flex; justify-content: center; }
+  .art > div { aspect-ratio: 300 / 240; }
+
+  /* special blocks */
+  .aqi { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.6mm; }
+  .aqi div { border-radius: 3.5mm; padding: 3mm 1mm 2.4mm; text-align: center; font-size: 4mm; line-height: 1.35; color: #fff; min-height: 19mm;
+    display: flex; align-items: center; justify-content: center; }
+  .aqi div.dk { color: #3A2A00; }
+  .aqi-note { margin-top: 2.6mm; font-size: 4.4mm; color: #4A607A; text-align: center; }
+
+  table.cmp { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 4.6mm; line-height: 1.4; border-radius: 6mm; overflow: hidden;
+    box-shadow: inset 0 0 0 0.6mm var(--t2); }
+  .cmp th, .cmp td { padding: 2.3mm 3mm 1.7mm; text-align: center; border-bottom: 0.4mm solid var(--t2); }
+  .cmp th { font-weight: normal; }
+  .cmp thead th { background: var(--c); color: #fff; font-size: 5.2mm; padding: 2mm; }
+  .cmp thead th .ph { width: 20mm; height: 20mm; margin: 0 auto 1mm; background: #fff; border-radius: 50%; padding: 0.8mm; }
+  .cmp tbody th { background: var(--t); color: var(--d); text-align: right; padding-right: 4mm; }
+  .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
+  .cmp td.hi { color: #B92D1C; }
+
+  .plate { display: flex; align-items: center; gap: 6mm; }
+  .plate .pie { flex: none; width: 66mm; height: 66mm; }
+  .plate ul { list-style: none; display: flex; flex-direction: column; gap: 2.6mm; flex: 1; }
+  .plate li { display: flex; align-items: center; gap: 2.6mm; font-size: 4.5mm; line-height: 1.45; }
+  .plate li i { flex: none; width: 6mm; height: 6mm; border-radius: 1.6mm; }
+
+  .rule { background: var(--t); border-radius: 7mm; padding: 4mm 5mm 4.5mm; }
+  .rule .ttl { text-align: center; font-size: 6.4mm; color: var(--d); }
+  .rule .ttl span { display: inline-block; direction: ltr; unicode-bidi: isolate; background: var(--c); color: #fff; border-radius: 4mm; padding: 0.6mm 3mm 0; margin: 0 1.5mm; }
+  .rule .row { display: flex; align-items: stretch; justify-content: center; gap: 2mm; margin-top: 3.5mm; }
+  .rule .cell { flex: 1; background: #fff; border-radius: 5mm; padding: 3mm 2mm 2.6mm; text-align: center; box-shadow: 0 0.8mm 0 var(--t2); }
+  .rule .cell .emo { font-size: 9mm; }
+  .rule .cell b { display: block; font-weight: normal; font-size: 6mm; color: var(--c); margin-top: 1.2mm; }
+  .rule .cell p { font-size: 4.3mm; line-height: 1.4; }
+  .rule .arr { align-self: center; font-size: 7mm; color: var(--c); }
+
+  .phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5mm; }
+  .ph1 { display: flex; align-items: center; gap: 3mm; border-radius: 6mm; padding: 3mm 4mm; color: #fff; }
+  .ph1 .emo { font-size: 9mm; }
+  .ph1 b { font-weight: normal; display: block; font-size: 9mm; line-height: 1.1; }
+  .ph1 span { font-size: 4.4mm; }
+
+  .bins { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .bin { border-radius: 6mm; padding: 3.5mm 4mm 4mm; color: #fff; }
+  .bin .t { font-size: 5.4mm; display: flex; align-items: center; gap: 2mm; }
+  .bin .t .emo { font-size: 8mm; }
+  .bin ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; margin-top: 3mm; }
+  .bin li { background: rgba(255,255,255,.95); color: #12355B; border-radius: 4mm; padding: 1.6mm 2mm 1.2mm; font-size: 4.3mm; display: flex; align-items: center; gap: 1.6mm; }
+  .bin li .emo { font-size: 5.6mm; }
+
+  .faces { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm; text-align: center; }
+  .faces > div { min-width: 0; }
+  .faces .f { width: 100%; max-width: 30mm; aspect-ratio: 1; margin: 0 auto 1.6mm; }
+  .faces span { font-size: 5mm; }
+
+  /* slogan + footer */
+  .slogan { position: absolute; left: 12mm; right: 12mm; bottom: 19mm; height: 13mm; border-radius: 7mm; display: flex; align-items: center; justify-content: center; gap: 3mm;
+    background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 70%, #FFC531)); color: #fff; font-size: 6.4mm; text-shadow: 0 0.5mm 0 rgba(0,0,0,.18); }
+  .slogan .emo { font-size: 6.6mm; text-shadow: none; }
+  .foot { position: absolute; left: 12mm; right: 12mm; bottom: 7mm; height: 8mm; display: flex; align-items: center; justify-content: space-between; font-size: 3.8mm; color: #6A7F96; }
+  .foot .sep { display: inline-block; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--c); margin: 0 2.2mm 0.5mm; vertical-align: middle; }
+  .foot .pn { width: 8mm; height: 8mm; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-size: 4.2mm; line-height: 1; padding-top: 0.4mm; }
+
+  /* cover & contents */
+  .cover { --c: #1F6FD1; background: linear-gradient(170deg, #1F6FD1 0%, #1689C4 46%, #0E9F9A 100%); color: #fff; }
+  .cover .dots { position: absolute; inset: 0; opacity: .12; background-image: radial-gradient(circle, #fff 0.8mm, transparent 0.9mm); background-size: 8mm 8mm; }
+  .cover .kick { position: absolute; top: 20mm; left: 0; right: 0; text-align: center; font-size: 6mm; opacity: .95; }
+  .cover h1 { position: absolute; top: 32mm; left: 10mm; right: 10mm; text-align: center; font-weight: normal; font-size: 15mm; line-height: 1.3; text-shadow: 0 0.8mm 0 rgba(0,0,0,.2); }
+  .cover h1 em { font-style: normal; color: #FFC531; }
+  .cover .art2 { position: absolute; top: 90mm; left: 32mm; width: 146mm; height: 116.8mm; background: #fff; border-radius: 12mm; padding: 2mm; box-shadow: 0 1.5mm 0 rgba(0,0,0,.15); }
+  .cover .art2 > div { width: 100%; height: 100%; border-radius: 10mm; overflow: hidden; background: #EAF5FF; }
+  .cover .tags { position: absolute; top: 214mm; left: 14mm; right: 14mm; display: flex; flex-wrap: wrap; justify-content: center; gap: 2mm; }
+  .cover .tags span { background: rgba(255,255,255,.18); border-radius: 4mm; padding: 1mm 3mm 0.6mm; font-size: 4mm; }
+  .cover .by2 { position: absolute; bottom: 16mm; left: 50%; transform: translateX(-50%); background: #fff; color: #12355B; border-radius: 8mm; padding: 3mm 9mm 2.4mm;
+    font-size: 7mm; white-space: nowrap; box-shadow: 0 1.2mm 0 rgba(0,0,0,.18); }
+  .cover .by2 b { font-weight: normal; color: #1F6FD1; }
+
+  .toc { --c: #1F6FD1; }
+  .toc .hdr2 h1 { font-size: 9mm; }
+  .toc .rows { position: absolute; top: 38mm; left: 14mm; right: 14mm; display: flex; flex-direction: column; gap: 2.4mm; }
+  .toc .r { display: flex; align-items: center; gap: 3.5mm; font-size: 5.2mm; line-height: 1.3; background: #F5F8FC; border-radius: 4.5mm; padding: 1.8mm 3mm 1.4mm; }
+  .toc .r .n { flex: none; width: 9mm; height: 9mm; border-radius: 50%; color: #fff; display: grid; place-items: center; font-size: 4.6mm; line-height: 1; padding-top: 0.4mm; }
+  .toc .r .e { flex: none; font-size: 6mm; }
+  .toc .r .ld { flex: 1; border-bottom: 0.5mm dotted #9DB3CC; margin: 0 2mm; transform: translateY(-1mm); }
+  .toc .r .pg { flex: none; min-width: 9mm; text-align: center; color: #1F6FD1; }
+</style>
+<script src="characters.js"></script>
+<script src="scenes.js"></script>
+<script src="topics.js"></script>
+</head>
+<body>
+<div id="book"></div>
+<script>
+(function () {
+  const FA = '۰۱۲۳۴۵۶۷۸۹';
+  const fa = (n) => String(n).replace(/[0-9]/g, (d) => FA[d]);
+  const E = (e) => `<span class="emo">${e}</span>`;
+  const MARKS = { ok: MARK(true), no: MARK(false) };
+  const WARN_SVG = '<svg viewBox="0 0 100 90"><path d="M50 4 L96 86 H4 Z" fill="#FFC531" stroke="#12355B" stroke-width="6" stroke-linejoin="round"/><rect x="45" y="30" width="10" height="32" rx="5" fill="#12355B"/><circle cx="50" cy="73" r="6" fill="#12355B"/></svg>';
+  const HERO_ICON = { air: '🌫️', quake: '🌍', coldflu: '🤧', teeth: '🦷', food: '🥗', sleep: '🌙', eyes: '👁️', bag: '🎒', road: '🚦', firstaid: '🩹', online: '💻', fire: '🔥', save: '💧', recycle: '♻️', kind: '🤝', feel: '💛' };
+
+  const B = {
+    intro: (b) => `<div class="intro">${E(b.e)}<p>${b.text}</p></div>`,
+    list: (b) => `<div>${b.h ? `<div class="h">${b.h}</div>` : ''}<div class="list ${b.cols === 2 ? 'c2' : ''}">` +
+      b.items.map(([e, t]) => `<div class="it"><div class="ei">${E(e)}</div><p>${t}</p></div>`).join('') + `</div></div>`,
+    steps: (b) => {
+      const row = b.cols === 2 && b.items.length === 4;
+      return `<div>${b.h ? `<div class="h">${b.h}</div>` : ''}<div class="steps ${row ? 'row' : ''}" style="grid-template-columns:repeat(${b.cols},1fr)">` +
+        b.items.map(([e, ti, t], i) => row
+          ? `<div class="step"><span class="n">${fa(i + 1)}</span>${E(e)}<div class="tx"><b>${ti}</b><p>${t}</p></div></div>`
+          : `<div class="step"><span class="n">${fa(i + 1)}</span>${E(e)}<b>${ti}</b><p>${t}</p></div>`).join('') + `</div></div>`;
+    },
+    dodont: (b) => `<div>${b.h ? `<div class="h">${b.h}</div>` : ''}<div class="dd">` +
+      [['ok', b.do], ['no', b.dont]].map(([k, [title, items]]) => `<div class="ddc ${k}"><div class="t"><span class="mk">${MARKS[k]}</span>${title}</div><ul>` +
+        items.map(([e, t]) => `<li>${E(e)}<span>${t}</span></li>`).join('') + `</ul></div>`).join('') + `</div></div>`,
+    warn: (b) => `<div class="warn"><div class="t"><span class="mk">${WARN_SVG}</span>${b.h}</div><ul>${b.items.map((t) => `<li>${t}</li>`).join('')}</ul>` +
+      (b.note ? `<div class="note">${b.note}</div>` : '') + `</div>`,
+    chips: (b) => `<div>${b.h ? `<div class="h">${b.h}</div>` : ''}<div class="chips ${b.tone === 'bad' ? 'bad' : ''} ${b.items.length === 4 ? 'c4' : b.items.length === 5 ? 'c5' : ''}">` +
+      b.items.map(([e, t]) => `<div class="cp">${E(e)}<span>${t}</span></div>`).join('') + `</div></div>`,
+    big: (b) => `<div class="big ${b.items.length > 1 ? 'cols' : ''}">` + b.items.map(([n, t]) => `<div class="bg"><div class="num">${n}</div><p>${t}</p></div>`).join('') + `</div>`,
+    tip: (b) => `<div class="tip">${E(b.e)}<p>${b.text}</p></div>`,
+    art: (b) => `<div class="art"><div style="height:${b.h}mm">${SCENES[b.s]()}</div></div>`,
+    aqi: (b) => `<div><div class="h">${b.h}</div><div class="aqi">` +
+      [['#2EAD4B', 'پاک'], ['#F7D21E', 'قابل قبول', 1], ['#F28A1B', 'ناسالم برای کودکان'], ['#E0302A', 'ناسالم'], ['#8E3BA5', 'بسیار ناسالم'], ['#7A1F2B', 'خطرناک']]
+        .map(([c, t, dk]) => `<div class="${dk ? 'dk' : ''}" style="background:${c}">${t}</div>`).join('') +
+      `</div><div class="aqi-note">${b.note}</div></div>`,
+    table: () => {
+      const rows = [['شروع بیماری', 'کم‌کم', 'ناگهانی'], ['تب', 'کم یا بدون تب', 'معمولاً تب دارد'], ['بدن‌درد', 'کم', 'زیاد'], ['خستگی', 'کم', 'زیاد'],
+        ['عطسه و آبریزش بینی', 'زیاد', 'گاهی'], ['سردرد', 'کم', 'زیاد']];
+      return `<table class="cmp"><thead><tr><th>نشانه</th><th><div class="ph">${SCENES.sickNose()}</div>سرماخوردگی</th><th><div class="ph">${SCENES.sickFever()}</div>آنفولانزا</th></tr></thead><tbody>` +
+        rows.map(([a, b2, c]) => `<tr><th>${a}</th><td>${b2}</td><td class="${['زیاد', 'ناگهانی', 'معمولاً تب دارد'].includes(c) ? 'hi' : ''}">${c}</td></tr>`).join('') + `</tbody></table>`;
+    },
+    plate: (b) => {
+      const pie = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="49" fill="#FFFFFF" stroke="#D6E4EE" stroke-width="1.5"/>
+        <path d="M50 50 L50 6 A44 44 0 0 0 50 94 Z" fill="#7CCB6B"/>
+        <path d="M50 50 L50 94 A44 44 0 0 0 94 50 Z" fill="#F2B84B"/>
+        <path d="M50 50 L94 50 A44 44 0 0 0 50 6 Z" fill="#E8735A"/>
+        <circle cx="50" cy="50" r="44" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+        <path d="M50 6 V94 M50 50 H94" stroke="#FFFFFF" stroke-width="1.6"/></svg>`;
+      const em = (e, x, y) => `<span class="emo" style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);font-size:9mm">${e}</span>`;
+      return `<div><div class="h">${b.h}</div><div class="plate"><div class="pie" style="position:relative">${pie}${em('🥦', 28, 40)}${em('🍎', 30, 64)}${em('🍗', 68, 30)}${em('🍞', 68, 70)}</div><ul>
+        <li><i style="background:#7CCB6B"></i>نیمی از بشقاب: میوه و سبزی</li>
+        <li><i style="background:#F2B84B"></i>یک‌چهارم: نان، برنج و غلات</li>
+        <li><i style="background:#E8735A"></i>یک‌چهارم: گوشت، مرغ، ماهی، تخم‌مرغ یا حبوبات</li>
+        <li><i style="background:#9FD3F5"></i>همراه غذا: لبنیات مثل شیر، ماست و پنیر</li></ul></div></div>`;
+    },
+    rule202020: () => `<div class="rule"><div class="ttl">قانون <span>۲۰ - ۲۰ - ۲۰</span> برای استراحت چشم</div><div class="row">` +
+      `<div class="cell">${E('⏱️')}<b>هر ۲۰ دقیقه</b><p>که به صفحه یا کتاب نگاه می‌کنیم</p></div><div class="arr"><svg viewBox="0 0 20 20" style="width:6mm;height:6mm"><path d="M14 3 L5 10 L14 17 Z" fill="currentColor"/></svg></div>` +
+      `<div class="cell">${E('👀')}<b>۲۰ ثانیه</b><p>چشم‌ها را از صفحه برداریم</p></div><div class="arr"><svg viewBox="0 0 20 20" style="width:6mm;height:6mm"><path d="M14 3 L5 10 L14 17 Z" fill="currentColor"/></svg></div>` +
+      `<div class="cell">${E('🌳')}<b>۶ متر دورتر</b><p>به یک چیز دور نگاه کنیم</p></div></div></div>`,
+    phones: () => `<div class="phones">` + [['🚑', '۱۱۵', 'اورژانس', '#D23A2A'], ['🚒', '۱۲۵', 'آتش‌نشانی', '#E2731B'], ['🚓', '۱۱۰', 'پلیس', '#1F5FBF']]
+      .map(([e, n, t, c]) => `<div class="ph1" style="background:${c}">${E(e)}<div><b>${n}</b><span>${t}</span></div></div>`).join('') + `</div>`,
+    bins: () => `<div class="bins">` +
+      `<div class="bin" style="background:#1F6FD1"><div class="t">${E('♻️')}زباله خشک (قابل بازیافت)</div><ul>` +
+      [['📄', 'کاغذ و مقوا'], ['🧴', 'بطری پلاستیکی'], ['🥫', 'قوطی فلزی'], ['🫙', 'ظرف شیشه‌ای']].map(([e, t]) => `<li>${E(e)}${t}</li>`).join('') + `</ul></div>` +
+      `<div class="bin" style="background:#6D8B2F"><div class="t">${E('🍂')}زباله تر</div><ul>` +
+      [['🍌', 'پوست میوه'], ['🥗', 'باقی‌مانده غذا'], ['🥚', 'پوست تخم‌مرغ'], ['🍵', 'تفاله چای']].map(([e, t]) => `<li>${E(e)}${t}</li>`).join('') + `</ul></div></div>`,
+    faces: () => `<div class="faces">` + [['happy', 'شادی'], ['sad', 'غم'], ['angry', 'خشم'], ['scared', 'ترس'], ['calm', 'آرامش']]
+      .map(([k, t]) => `<div><div class="f">${FACE(k)}</div><span>${t}</span></div>`).join('') + `</div>`,
+  };
+
+  let html = '';
+  let pageNo = 0;
+  const foot = (label) => `<div class="foot"><span>مجموعه آموزشی سلامت و ایمنی${label ? '<i class="sep"></i>' + label : ''}</span><span class="pn">${fa(pageNo)}</span></div>`;
+
+  // ---- plan page numbers for the contents page
+  const start = {};
+  let p = 3;
+  TOPICS.forEach((t) => { start[t.id] = p; p += t.pages.length; });
+
+  // ---- cover
+  pageNo = 1;
+  html += `<section class="page cover" data-kind="cover"><div class="dots"></div>
+    <div class="kick">ویژه دانش‌آموزان دبستان</div>
+    <h1>مجموعه آموزشی<br><em>سلامت و ایمنی</em></h1>
+    <div class="art2"><div>${SCENES.cover()}</div></div>
+    <div class="tags">${TOPICS.map((t) => `<span>${t.title}</span>`).join('')}</div>
+    <div class="by2">گردآورنده: <b>${COMPILER}</b></div></section>`;
+
+  // ---- contents
+  pageNo = 2;
+  html += `<section class="page toc p2" data-kind="toc"><div class="hdr2"><h1>فهرست موضوع‌ها</h1></div><div class="rows">` +
+    TOPICS.map((t, i) => `<div class="r"><span class="n" style="background:${t.color}">${fa(i + 1)}</span>${E(HERO_ICON[t.id])}<span>${t.title}</span><span class="ld"></span><span class="pg">${fa(start[t.id])}</span></div>`).join('') +
+    `</div>${foot('')}</section>`;
+
+  // ---- topics
+  TOPICS.forEach((t, ti) => {
+    t.pages.forEach((blocks, pi) => {
+      pageNo++;
+      const first = pi === 0, last = pi === t.pages.length - 1;
+      const head = first
+        ? `<div class="hdr"><div class="dots"></div><div class="hdr-text"><span class="chip">${E(HERO_ICON[t.id])} موضوع ${fa(ti + 1)}</span><h1>${t.title}</h1><div class="sub">${t.sub}</div>` +
+          `<div class="by">گردآورنده: <b>${COMPILER}</b></div></div><div class="hero"><div>${SCENES[t.hero]()}</div></div></div>`
+        : `<div class="hdr2"><span class="chip">${E(HERO_ICON[t.id])} موضوع ${fa(ti + 1)}</span><h1>${t.title}</h1><span class="cont">ادامه</span></div>`;
+      html += `<section class="page ${first ? 'p1' : 'p2'} ${last ? 'has-slogan' : ''}" style="--c:${t.color}" data-topic="${t.id}" data-page="${pi + 1}">` +
+        head + `<div class="content">${blocks.map((b) => B[b.t](b)).join('')}</div>` +
+        (last ? `<div class="slogan">${E('⭐')}${t.slogan}${E('⭐')}</div>` : '') + foot(t.title) + `</section>`;
+    });
+  });
+
+  document.getElementById('book').innerHTML = html.replace(/هٔ/g, 'ۀ');
+
+  // ---- auto-fit: scale each page's content (85%–128%) to fill its box without overflow.
+  // Runs only after the Titr and emoji fonts are loaded, so measurements use the real glyphs.
+  const mm = 96 / 25.4;
+  const fit = () => document.querySelectorAll('.page .content').forEach((c) => {
+    const inner = document.createElement('div');
+    inner.className = 'inner';
+    while (c.firstChild) inner.appendChild(c.firstChild);
+    c.appendChild(inner);
+    const W = c.clientWidth / mm, H = c.clientHeight / mm;
+    const n = inner.children.length;
+    const fits = (k) => {
+      inner.style.zoom = k; inner.style.width = (W / k) + 'mm'; inner.style.height = 'auto';
+      const need = [...inner.children].reduce((s, el) => s + el.getBoundingClientRect().height / mm, 0) + (n - 1) * 5 * k;
+      return need <= H - 1;
+    };
+    let k = 1.28;
+    while (k > 0.85 && !fits(k)) k = Math.round((k - 0.01) * 100) / 100;
+    fits(k);
+    inner.style.height = (H / k) + 'mm';
+    c.dataset.zoom = k;
+  });
+  Promise.all([document.fonts.load('20px Titr'), document.fonts.load('20px "Noto Color Emoji"', '🦷')])
+    .then(() => document.fonts.ready)
+    .then(() => { fit(); document.documentElement.dataset.ready = '1'; });
+})();
+</script>
+</body>
+</html>
