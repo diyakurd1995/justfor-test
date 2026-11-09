@@ -197,6 +197,67 @@
     return svg(VB, s);
   }
 
+  /* ---------- classroom stretching pictograms (viewBox 0 0 120 120) ---------- */
+  const SKC = SKIN.light.base, ARW = '#F0761A';
+  const KIND = { arm: ['#4F86D9', 7], armFar: ['#3A68B3', 7], leg: ['#2B4C80', 9], legFar: ['#1E3A66', 9], torso: ['#4F86D9', 15], foot: ['#263238', 6], neck: [SKC, 6] };
+  const pl = (pts, k) => `<polyline points="${pts.map((q) => q.join(',')).join(' ')}" fill="none" stroke="${KIND[k][0]}" stroke-width="${KIND[k][1]}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const hd = (q) => `<circle cx="${q[0]}" cy="${q[1]}" r="3.6" fill="${SKC}"/>`;
+  function hed(c, tilt = 0, face = 'front') {
+    const [x, y] = c;
+    let s = `<circle cx="${x}" cy="${y}" r="9.5" fill="${SKC}"/>`;
+    const cap = face === 'front' ? tilt : face === 'right' ? tilt - 18 : tilt + 18;
+    s += `<path d="M${x - 9.9} ${y} A9.9 9.9 0 0 1 ${x + 9.9} ${y} Z" fill="#3E2C21" transform="rotate(${cap} ${x} ${y})"/>`;
+    const eyes = face === 'front' ? [[-3.4, 2.2], [3.4, 2.2]] : face === 'right' ? [[4.8, 1.8]] : [[-4.8, 1.8]];
+    const r = (tilt * Math.PI) / 180;
+    s += eyes.map(([ex, ey]) => `<circle cx="${(x + ex * Math.cos(r) - ey * Math.sin(r)).toFixed(1)}" cy="${(y + ex * Math.sin(r) + ey * Math.cos(r)).toFixed(1)}" r="1.4" fill="#2B1D16"/>`).join('');
+    return s;
+  }
+  const arw = (d, end, ang) => `<path d="${d}" fill="none" stroke="${ARW}" stroke-width="3" stroke-linecap="round"/><path d="M0 0 L-7.5 -4.8 L-7.5 4.8 Z" fill="${ARW}" transform="translate(${end[0]} ${end[1]}) rotate(${ang})"/>`;
+  const glow = (cx, cy, rx, ry) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${ARW}" opacity=".16" stroke="${ARW}" stroke-width="1.8" stroke-dasharray="3 3"/>`;
+  const floorS = `<line x1="6" y1="110" x2="114" y2="110" stroke="#D9C2A5" stroke-width="3" stroke-linecap="round"/>`;
+  const chairF = (x = 60) => ({ back: `<rect x="${x - 15}" y="34" width="30" height="40" rx="4" fill="#D9A06A"/>`,
+    seat: `<rect x="${x - 19}" y="70" width="38" height="7" rx="2.5" fill="#A86B3E"/><path d="M${x - 16} 77 V109 M${x + 16} 77 V109" stroke="#A86B3E" stroke-width="4" stroke-linecap="round"/>` });
+  const deskS = `<path d="M74 58 H116 M108 58 V109" stroke="#A0693D" stroke-width="4.5" stroke-linecap="round"/>`;
+  const seatedLegs = pl([[54, 72], [53, 80], [53, 105]], 'leg') + pl([[66, 72], [67, 80], [67, 105]], 'leg') + pl([[50, 107], [56, 107]], 'foot') + pl([[64, 107], [70, 107]], 'foot');
+  const standLegs = pl([[55, 68], [54, 88], [54, 105]], 'leg') + pl([[65, 68], [66, 88], [66, 105]], 'leg') + pl([[51, 107], [57, 107]], 'foot') + pl([[63, 107], [69, 107]], 'foot');
+  const sideLegs = (x = 56) => pl([[x, 66], [x + 1, 88], [x + 1, 105]], 'leg') + pl([[x + 1, 107], [x + 9, 108]], 'foot');
+  const seated = (inner) => { const c = chairF(); return floorS + c.back + c.seat + seatedLegs + inner; };
+  const STRETCH = {
+    neckTilt: () => seated(pl([[60, 70], [60, 40]], 'torso') + pl([[50, 42], [46, 56], [48, 68]], 'arm') + pl([[70, 42], [74, 56], [72, 68]], 'arm') + hd([48, 68]) + hd([72, 68]) +
+      pl([[60, 40], [63, 34]], 'neck') + hed([65.1, 29.1], 25) + arw('M52 12 Q66 4 76 16', [76, 16], 50)),
+    neckTurn: () => seated(pl([[60, 70], [60, 40]], 'torso') + pl([[50, 42], [46, 56], [48, 68]], 'arm') + pl([[70, 42], [74, 56], [72, 68]], 'arm') + hd([48, 68]) + hd([72, 68]) +
+      pl([[60, 40], [60, 34]], 'neck') + hed([60, 28], 0, 'right') + arw('M44 14 Q60 2 76 14', [76, 14], 38) + arw('M76 14 Q60 2 44 14', [44, 14], 142)),
+    shrug: () => seated(pl([[60, 70], [60, 38]], 'torso') + pl([[50, 36], [45, 52], [47, 66]], 'arm') + pl([[70, 36], [75, 52], [73, 66]], 'arm') + hd([47, 66]) + hd([73, 66]) +
+      pl([[60, 38], [60, 32]], 'neck') + hed([60, 25]) + arw('M38 44 V28', [38, 26], -90) + arw('M82 44 V28', [82, 26], -90)),
+    reachUp: () => seated(pl([[60, 70], [60, 40]], 'torso') + pl([[60, 40], [60, 34]], 'neck') + hed([60, 28]) +
+      pl([[50, 42], [46, 26], [56, 9]], 'arm') + pl([[70, 42], [74, 26], [64, 9]], 'arm') + hd([60, 8]) + arw('M88 40 V14', [88, 12], -90)),
+    crossArm: () => seated(pl([[60, 70], [60, 40]], 'torso') + pl([[60, 40], [60, 34]], 'neck') + hed([60, 28]) +
+      pl([[70, 42], [56, 49], [40, 46]], 'arm') + hd([39, 46]) + pl([[50, 42], [46, 58], [58, 51]], 'arm') + hd([58, 51]) + glow(72, 44, 8, 6) + arw('M54 64 H36', [34, 64], 180)),
+    twist: () => seated(pl([[60, 70], [61, 40]], 'torso') + pl([[61, 40], [62, 34]], 'neck') + hed([62, 28], 0, 'right') +
+      pl([[72, 42], [80, 52], [77, 62]], 'armFar') + hd([77, 62]) + pl([[51, 42], [56, 57], [66, 71]], 'arm') + hd([66, 71]) + arw('M42 52 Q58 64 82 46', [84, 44], -38)),
+    sideBend: () => floorS + standLegs + pl([[60, 68], [49, 38]], 'torso') + pl([[49, 38], [47, 32]], 'neck') + hed([45, 26], -20) +
+      pl([[39.6, 41.4], [35, 55], [51, 63]], 'arm') + hd([51, 63]) + pl([[58.4, 34.6], [56, 16], [40, 8]], 'arm') + hd([39, 8]) + glow(64, 52, 6, 12) + arw('M78 30 Q74 8 56 3', [54, 2], 194),
+    chest: () => floorS + sideLegs(56) + pl([[57, 66], [59, 34]], 'torso') + pl([[58, 37], [49, 51], [45, 63]], 'armFar') + pl([[59, 34], [60, 28]], 'neck') + hed([61, 22], -8, 'right') +
+      pl([[59, 37], [50, 52], [46, 64]], 'arm') + hd([46, 64]) + glow(64, 44, 6, 9) + arw('M74 44 H88', [90, 44], 0),
+    quad: () => floorS + deskS + pl([[54, 64], [53, 86], [42, 74]], 'legFar') + pl([[42, 74], [37, 70]], 'foot') + pl([[55, 33], [47, 50], [42, 71]], 'armFar') + hd([42, 72]) +
+      pl([[54, 64], [55, 86], [55, 105]], 'leg') + pl([[55, 107], [63, 108]], 'foot') + pl([[54, 64], [55, 30]], 'torso') + pl([[55, 30], [56, 24]], 'neck') + hed([57, 18], 0, 'right') +
+      pl([[55, 33], [66, 44], [78, 56]], 'arm') + hd([78, 56]) + glow(50, 76, 6, 11),
+    calfRaise: () => floorS + deskS + pl([[54, 62], [55, 84], [57, 99]], 'legFar') + pl([[54, 62], [56, 84], [58, 100]], 'leg') + pl([[58, 101], [65, 108]], 'foot') +
+      pl([[54, 62], [55, 28]], 'torso') + pl([[55, 28], [56, 22]], 'neck') + hed([57, 16], 0, 'right') + pl([[55, 31], [66, 44], [78, 56]], 'arm') + hd([78, 56]) +
+      arw('M44 106 V88', [44, 86], -90),
+    calfStretch: () => floorS + deskS + pl([[52, 66], [42, 86], [33, 104]], 'legFar') + pl([[31, 108], [41, 108]], 'foot') +
+      pl([[52, 66], [64, 82], [63, 105]], 'leg') + pl([[63, 107], [71, 108]], 'foot') + pl([[52, 66], [64, 38]], 'torso') + pl([[64, 38], [66, 32]], 'neck') + hed([69, 27], 0, 'right') +
+      pl([[63, 41], [72, 50], [80, 56]], 'arm') + hd([80, 56]) + glow(38, 95, 6, 11),
+    wrist: () => floorS + sideLegs(56) + pl([[57, 66], [58, 32]], 'torso') + pl([[58, 32], [59, 26]], 'neck') + hed([60, 20], 0, 'right') +
+      pl([[58, 36], [71, 38], [83, 38]], 'arm') + `<rect x="83" y="27" width="6" height="13" rx="3" fill="${SKC}" transform="rotate(-14 86 34)"/>` +
+      pl([[58, 36], [68, 48], [88, 30]], 'armFar') + hd([89, 29]) + glow(76, 38, 8, 5),
+  };
+  function stretchPic(kind) {
+    const id = uid('st');
+    return svg('0 0 120 120', `<defs><clipPath id="${id}"><rect width="120" height="120" rx="14"/></clipPath></defs><g clip-path="url(#${id})"><rect width="120" height="120" fill="#FFF4E6"/>${STRETCH[kind]()}</g>`);
+  }
+  global.STRETCH_PIC = stretchPic;
+
   Object.assign(global.SCENES, {
     comb: sceneComb, sun: sceneSun, phone: scenePhone, ambulance: sceneAmbulance, football: sceneFootball,
     globe: sceneGlobe, broom: sceneBroom, renewables: sceneRenewables, spine: sceneSpine,
